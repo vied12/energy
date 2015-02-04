@@ -1,0 +1,7 @@
+<div ng-controller="EditorCtrl as editor" class="Editor" height-like-window>
+        <a href="#" ng-click="editor.addLink('new link')" class="btn btn-default">Add a new link</a>
+
+        <div ng-repeat="link in editor.links">
+            <input type="text" ng-model="link.label"/>
+        </div>
+</div>

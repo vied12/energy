@@ -1,0 +1,10 @@
+<div ng-controller="MapCtrl" class="Map">
+    <leaflet 
+    defaults="defaults" 
+    center="center" 
+    maxbounds="maxBounds"
+    markers="markers"
+    height-like-window></leaflet>
+    <!--  <p ng-show="maxBounds.northEast" class="result">Maxbounds: NE(lat: {{ maxbounds.northEast.lat }}, lng: {{ maxbounds.northEast.lng }}) SW(lat: {{ maxbounds.southWest.lat }}, lng: {{ maxbounds.southWest.lng }})</p> -->
+    <p>Last click:<pre>{{ lastClick.latlng }}</pre></p>
+</div>
