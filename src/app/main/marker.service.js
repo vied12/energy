@@ -13,7 +13,9 @@ function markerService() {
                 draggable: true,
                 icon: {
                     limited_to_zoom: [3],
-                    // className: 'label',
+                    style: {
+                        color: 'red'
+                    },
                     type: 'div',
                     html: label
                 }

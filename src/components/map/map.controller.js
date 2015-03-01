@@ -63,13 +63,27 @@ function MapCtrl($scope, markerService, leafletData) {
                         layer.setOpacity(1);
                     }
                 }
-            })
+            });
         }); 
     }
 
     $scope.$watch('markers', hideAndShowMarker, true);
     $scope.$on('leafletDirectiveMap.zoomend', hideAndShowMarker);
 
+    function styleMarkers() {
+        leafletData.getMap().then(function (map) {
+            _.values(map._layers).forEach(function (layer) {
+                if (_.has(layer.options, 'icon')) {
+                    if (_.has(layer.options.icon.options, 'style')) {
+                        console.log('aaa', layer, layer.options.icon.options.style);
+                        // angular.element(layer).css(layer.options.icon.options.style);
+                        angular.element(layer._icon).css(layer.options.icon.options.style);
+                    }
+                }
+            });
+        });
+    }
+    $scope.$watch('markers', styleMarkers, true);
 }
 angular.module('energy')
     .controller('MapCtrl', ['$scope', 'markerService', 'leafletData', MapCtrl]);
