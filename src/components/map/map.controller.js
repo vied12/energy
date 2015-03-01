@@ -1,7 +1,6 @@
 'use strict';
 
 function MapCtrl($scope, markerService, leafletData) {
-    $scope.labels = markerService.list;
     angular.extend($scope, {
         center: {
             lat: 0,
@@ -28,33 +27,38 @@ function MapCtrl($scope, markerService, leafletData) {
             },
             scrollWheelZoom: true
         },
-        markers: {}
+        markers: markerService.list
     });
     $scope.$on('resize', function resizeMap() {
         leafletData.getMap().then(function (map) {
             map._onResize();
         });
     });
+    $scope.$on('leafletDirectiveMarker.dragend', function (event, marker) {
+        // console.log('a', event);
+        // console.log(marker.markerName);
+        // $scope.markers[marker.markerName]
+    });
     $scope.$on('leafletDirectiveMap.click', function (event, b) {
         $scope.lastClick = b.leafletEvent;
     });
-    function reloadLabel() {
-        $scope.labels.forEach(function (label) {
-            $scope.markers[label.$$hashKey] = {
-                lat: label.latlng.lat,
-                lng: label.latlng.lng,
-                focus: true,
-                draggable: true,
-                icon: {
-                    type: 'div',
-                    html: label.label,
-                    // popupAnchor:  [0, 0]
-                    // iconSize: [230, 0],
-                }
-            };
-        });
-    }
-    $scope.$watch('labels', reloadLabel, true);
+    // function reloadLabel() {
+    //     $scope.labels.forEach(function (label) {
+    //         $scope.markers[label.$$hashKey] = {
+    //             lat: label.latlng.lat,
+    //             lng: label.latlng.lng,
+    //             focus: true,
+    //             draggable: true,
+    //             icon: {
+    //                 type: 'div',
+    //                 html: label.label,
+    //                 // popupAnchor:  [0, 0]
+    //                 // iconSize: [230, 0],
+    //             }
+    //         };
+    //     });
+    // }
+    // $scope.$watch('labels', reloadLabel, true);
 
 }
 angular.module('energy')

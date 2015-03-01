@@ -2,9 +2,10 @@
 
 angular.module('energy')
     .directive('heightLikeWindow', ['$timeout', '$window', function ($timeout, $window) {
+        var offset = 100;
         var link = function (scope, el) {
             function setHeight() {
-                el.css('height', $window.innerHeight - 100 + 'px');
+                el.css('height', $window.innerHeight - offset + 'px');
                 scope.$emit('resize');
             }
             $timeout(setHeight);
