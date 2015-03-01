@@ -1,24 +1,26 @@
-<div ng-controller="EditorCtrl as editor" class="Editor">
-    <a href="#" ng-click="editor.addLink('new link')" class="btn btn-default">Add a new link</a>
-    <div ng-repeat="link in editor.links" class="Editor__link">
-        <form class="form">
-            <div ng-bind="link.$$hashKey"></div>
-            <input type="text" ng-model="link.icon.html" placeholder="text" class="form-control" />
-            <!-- <input type="text" ng-model="link.href" placeholder="url" class="form-control" /> -->
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="input-group">
-                        <span class="input-group-addon" id="basic-addon1">lat</span>
-                        <input type="text" ng-model="link.lat" class="form-control"  aria-describedby="basic-addon1" disabled>
+<div ng-controller="EditorCtrl as editor" class="Editor" height-like-window>
+    <a href="#" ng-click="editor.addNewLink()" class="btn btn-default">Add a new link</a>
+    <div class="Editor__links">
+        <div ng-repeat="link in editor.links" class="Editor__link">
+            <form class="form">
+                <div><a class="btn btn-danger pull-right" href="#" ng-click="editor.removeLink(link)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></div>
+                <div ng-bind="link.$$hashKey"></div>
+                <input type="text" ng-model="link.icon.html" placeholder="text" class="form-control" />
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1">lat</span>
+                            <input type="text" ng-model="link.lat" class="form-control"  aria-describedby="basic-addon1" disabled>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <input type="text" ng-model="link.lng" class="form-control"  aria-describedby="basic-addon2" disabled>
+                            <span class="input-group-addon" id="basic-addon2">lng</span>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="input-group">
-                        <input type="text" ng-model="link.lng" class="form-control"  aria-describedby="basic-addon2" disabled>
-                        <span class="input-group-addon" id="basic-addon2">lng</span>
-                    </div>
-                </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </div>
