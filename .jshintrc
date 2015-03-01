@@ -20,6 +20,7 @@
   "white": true,
   "validthis": true,
   "globals": {
+    "_", true,
     "L": true,
     "angular": false,
     // Angular Mocks

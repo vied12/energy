@@ -1,28 +1,29 @@
 'use strict';
 
 function markerService() {
-    var labels = [];
-    var counter = 1;
+    var markers = [];
+    var counter_for_label = 1;
     return {
-        list: labels,
+        list: markers,
         add: function (label) {
-            label = label || 'New link ' + counter;
-            labels.push({
+            label = label || 'New link ' + counter_for_label;
+            markers.push({
                 lat: -69.7181066990676,
                 lng: -35.244140625,
                 draggable: true,
                 icon: {
-                    className: 'label',
+                    limited_to_zoom: [3],
+                    // className: 'label',
                     type: 'div',
                     html: label
                 }
             });
-            counter++;
+            counter_for_label++;
         },
         remove: function (label) {
-            var index = labels.indexOf(label);
+            var index = markers.indexOf(label);
             if (index > -1) {
-                labels.splice(index, 1);
+                markers.splice(index, 1);
             }
         }
     };

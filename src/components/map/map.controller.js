@@ -34,31 +34,41 @@ function MapCtrl($scope, markerService, leafletData) {
             map._onResize();
         });
     });
-    $scope.$on('leafletDirectiveMarker.dragend', function (event, marker) {
-        // console.log('a', event);
-        // console.log(marker.markerName);
-        // $scope.markers[marker.markerName]
-    });
+    // $scope.$on('leafletDirectiveMarker.dragend', function (event, marker) {
+    //     // console.log('a', event);
+    //     console.log(marker.leafletEvent);
+    //     var el = angular.element(marker.leafletEvent.target._icon);
+    //     el.css({color: 'red'});
+    //     // $scope.markers[marker.markerName]
+    //     // marker.setStyle({color: 'red'});
+    // });
     $scope.$on('leafletDirectiveMap.click', function (event, b) {
         $scope.lastClick = b.leafletEvent;
     });
-    // function reloadLabel() {
-    //     $scope.labels.forEach(function (label) {
-    //         $scope.markers[label.$$hashKey] = {
-    //             lat: label.latlng.lat,
-    //             lng: label.latlng.lng,
-    //             focus: true,
-    //             draggable: true,
-    //             icon: {
-    //                 type: 'div',
-    //                 html: label.label,
-    //                 // popupAnchor:  [0, 0]
-    //                 // iconSize: [230, 0],
-    //             }
-    //         };
-    //     });
-    // }
-    // $scope.$watch('labels', reloadLabel, true);
+
+    function hideAndShowMarker() {
+        leafletData.getMap().then(function (map) {
+            _.values(map._layers).forEach(function (layer) {
+                if (_.has(layer.options, 'icon')) {
+                    if (_.has(layer.options.icon.options, 'limited_to_zoom') && layer.options.icon.options.limited_to_zoom.length > 0) {
+                        var limited_to_zoom = _.map(layer.options.icon.options.limited_to_zoom, function(zoom) {
+                            return parseInt(zoom);
+                        });
+                        if (limited_to_zoom.indexOf(map.getZoom()) > -1) {
+                            layer.setOpacity(1);
+                        } else {
+                            layer.setOpacity(0);
+                        }
+                    } else {
+                        layer.setOpacity(1);
+                    }
+                }
+            })
+        }); 
+    }
+
+    $scope.$watch('markers', hideAndShowMarker, true);
+    $scope.$on('leafletDirectiveMap.zoomend', hideAndShowMarker);
 
 }
 angular.module('energy')
