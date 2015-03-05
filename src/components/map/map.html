@@ -1,13 +1,8 @@
-<div ng-controller="MapCtrl" class="Map">
+<div ng-controller="MapCtrl as map" class="Map">
     <leaflet 
-    defaults="defaults" 
+    defaults="defaults"
     center="center" 
     maxbounds="maxBounds"
     markers="markers"
     height-like-window></leaflet>
-    <!--  <p ng-show="maxBounds.northEast" class="result">Maxbounds: NE(lat: {{ maxbounds.northEast.lat }}, lng: {{ maxbounds.northEast.lng }}) SW(lat: {{ maxbounds.southWest.lat }}, lng: {{ maxbounds.southWest.lng }})</p> -->
-    <div class="row">
-        <div class="col-md-6">Last click:<pre>{{ lastClick.latlng }}</pre></div>
-        <div class="col-md-6">Current zoom:<pre>{{ center.zoom }}</pre></div>
-    </div>
 </div>

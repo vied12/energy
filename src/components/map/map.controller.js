@@ -5,12 +5,12 @@ function MapCtrl($scope, markerService, leafletData) {
         center: {
             lat: 0,
             lng: 0,
-            zoom: 3
+            zoom: 2
         },
-        maxBounds: {
-            southWest: {lat: -85.05112877980659, lng: -179.82421875},
-            northEast: {lat: -26.431228064506424, lng: 39.55078125}
-        },
+        // maxBounds: {
+        //     southWest: {lat: -85.05112877980659, lng: -179.82421875},
+        //     northEast: {lat: -26.431228064506424, lng: 39.55078125}
+        // },
         defaults: {
             tileLayer: 'assets/tiles/{z}/{x}/{y}.png',
             zoomControlPosition: 'topright',
@@ -75,8 +75,6 @@ function MapCtrl($scope, markerService, leafletData) {
             _.values(map._layers).forEach(function (layer) {
                 if (_.has(layer.options, 'icon')) {
                     if (_.has(layer.options.icon.options, 'style')) {
-                        console.log('aaa', layer, layer.options.icon.options.style);
-                        // angular.element(layer).css(layer.options.icon.options.style);
                         angular.element(layer._icon).css(layer.options.icon.options.style);
                     }
                 }

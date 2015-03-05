@@ -1,6 +1,18 @@
 
-<div class="container-fluid">
-    <div ng-include="'components/map/map.html'"></div>
+<div class="container-fluid editor-mode">
+    <div class="row">
+        <div class="col-md-3">
+            <div ng-include="'components/editor/editor.html'"></div>
+        </div>
+        <div class="col-md-9">
+            <div ng-include="'components/map/map.html'"></div>
+            <div class="row">
+                <div class="col-md-6">Last click:<pre>{{ lastClick.latlng }}</pre></div>
+                <div class="col-md-6">Current zoom:<pre>{{ center.zoom }}</pre></div>
+                <pre>{{ markers | json }}</pre>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="container">
     <!-- <div ng-include="'components/navbar/navbar.html'"></div> -->
