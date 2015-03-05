@@ -12,9 +12,11 @@ gulp serve
 ```
 
 ## Commands to create tiles
+
+```
 gdal_translate -of JPEG -outsize 16384 16384 infographie.jpg info.jpg
 gdal2tiles.py -p raster -z 0-6 -w none info.jpg tiles
-
+```
 
 ## Links
 
