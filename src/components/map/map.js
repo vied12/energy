@@ -1,0 +1,114 @@
+'use strict';
+
+function energyMap(markerService, leafletData) {
+    function MapCtrl($scope) {
+        var mv = this;
+        $scope.map = {};
+        angular.extend($scope.map, {
+            center: {
+                lat: 0,
+                lng: 0,
+                zoom: 2
+            },
+            // maxBounds: {
+            //     'southWest': {"lat":84.92832092949963,"lng":-178.2421875},
+            //     'northEast': {"lat":-60.93043220292333,"lng":177.5390625}
+            // },
+            defaults: {
+                tileLayer: 'assets/tiles/{z}/{x}/{y}.png',
+                zoomControlPosition: 'topright',
+                tileLayerOptions: {
+                    minZoom: 0,
+                    maxZoom: 6,
+                    attribution: 'ESO/INAF-VST/OmegaCAM',
+                    continuousWorld: false,
+                    noWrap: true,
+                    tms: true,
+                    crs: L.CRS.Simple,
+                    detectRetina: true,
+                    reuseTiles: true,
+                },
+                scrollWheelZoom: true
+            },
+            markers: markerService.list
+        });
+        $scope.$on('resize', function resizeMap() {
+            leafletData.getMap().then(function (map) {
+                map._onResize();
+            });
+        });
+
+        function hideAndShowMarker() {
+            leafletData.getMap().then(function (map) {
+                _.values(map._layers).forEach(function (layer) {
+                    if (_.has(layer.options, 'icon')) {
+                        if (_.has(layer.options.icon.options, 'limited_to_zoom') && layer.options.icon.options.limited_to_zoom.length > 0) {
+                            var limited_to_zoom = _.map(layer.options.icon.options.limited_to_zoom, function(zoom) {
+                                return parseInt(zoom);
+                            });
+                            if (limited_to_zoom.indexOf(map.getZoom()) > -1) {
+                                layer.setOpacity(1);
+                            } else {
+                                layer.setOpacity(0);
+                            }
+                        } else {
+                            layer.setOpacity(1);
+                        }
+                    }
+                });
+            }); 
+        }
+
+        $scope.$watch('map.markers', hideAndShowMarker, true);
+        $scope.$on('leafletDirectiveMap.zoomend', hideAndShowMarker);
+
+        function styleMarkers() {
+            leafletData.getMap().then(function (map) {
+                _.values(map._layers).forEach(function (layer) {
+                    if (_.has(layer.options, 'icon')) {
+                        if (_.has(layer.options.icon.options, 'style')) {
+                            angular.element(layer._icon).css(layer.options.icon.options.style);
+                        }
+                    }
+                });
+            });
+        }
+        $scope.$watch('markers', styleMarkers, true);
+
+        var rects = [];
+        $scope.map.goTo = function (bounds) {
+            leafletData.getMap().then(function (map) {
+                rects.forEach(function(rect) {map.removeLayer(rect);});
+                var rect = L.rectangle([bounds.southWest, bounds.northEast], {
+                    color: "#ff7800", weight: 3, fill:false
+                })
+                rect.addTo(map);
+                rects.push(rect);
+                map.fitBounds(L.latLngBounds(bounds.southWest, bounds.northEast));
+            });
+        };
+
+        // debug
+        $scope.map._selectedZone = [];
+        $scope.$on('leafletDirectiveMap.click', function(a,b) {
+            var point = b.leafletEvent.latlng;
+            if ($scope.map._selectedZone.length < 2) {
+                $scope.map._selectedZone.push(point);
+            } else {
+                $scope.map._selectedZone = [];
+            }
+        });
+
+    }
+    return {
+        restrict: 'E',
+        controller: MapCtrl,
+        priority: 10,
+        scope: {
+            'map' : '='
+        },
+        templateUrl: 'components/map/map.html'
+    }
+}
+angular.module('energy')
+    .directive('energyMap', ['markerService', 'leafletData', energyMap]);

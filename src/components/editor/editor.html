@@ -1,4 +1,5 @@
 <div ng-controller="EditorCtrl as editor" class="Editor" height-like-window>
+    <a href="#" ng-click="editor.selectZone()" class="btn btn-default">Select a zone</a>
     <a href="#" ng-click="editor.addNewLink()" class="btn btn-default">Add a new link</a>
     <div class="Editor__links">
         <div ng-repeat="link in editor.links" class="Editor__link">

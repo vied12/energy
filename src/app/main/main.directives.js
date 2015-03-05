@@ -2,7 +2,7 @@
 
 angular.module('energy')
     .directive('heightLikeWindow', ['$timeout', '$window', function ($timeout, $window) {
-        var offset = 100;
+        var offset = 0;
         var link = function (scope, el) {
             function setHeight() {
                 el.css('height', $window.innerHeight - offset + 'px');
@@ -16,6 +16,7 @@ angular.module('energy')
         };
         return {
             restrict: 'A',
+            priority: 50,
             link: link
         };
     }]);
