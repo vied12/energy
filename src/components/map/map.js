@@ -4,6 +4,7 @@ function energyMap(markerService, leafletData) {
     function MapCtrl($scope) {
         var mv = this;
         $scope.map = {};
+        var tiles_url = window.TILES_URL;
         angular.extend($scope.map, {
             center: {
                 lat: 0,
@@ -15,7 +16,7 @@ function energyMap(markerService, leafletData) {
             //     'northEast': {"lat":-60.93043220292333,"lng":177.5390625}
             // },
             defaults: {
-                tileLayer: 'assets/tiles/{z}/{x}/{y}.png',
+                tileLayer: tiles_url,
                 zoomControlPosition: 'topright',
                 tileLayerOptions: {
                     minZoom: 0,

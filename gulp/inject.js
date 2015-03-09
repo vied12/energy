@@ -3,6 +3,7 @@
 var gulp = require('gulp');
 
 var paths = gulp.paths;
+var preprocess = require('gulp-preprocess');
 
 var $ = require('gulp-load-plugins')();
 
@@ -35,6 +36,7 @@ gulp.task('inject', ['styles'], function () {
     .pipe($.inject(injectStyles, injectOptions))
     .pipe($.inject(injectScripts, injectOptions))
     .pipe(wiredep(wiredepOptions))
+    .pipe(preprocess())
     .pipe(gulp.dest(paths.tmp + '/serve'));
 
 });

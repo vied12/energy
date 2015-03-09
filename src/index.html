@@ -37,6 +37,15 @@
       ga('create','UA-XXXXX-X');ga('send','pageview');
     </script>
 
+    <script type="text/javascript">
+      window.TILES_URL = 'assets/tiles/{z}/{x}/{y}.png';
+    </script>
+    <!-- @ifdef PROD -->
+    <script type="text/javascript">
+      window.TILES_URL = 'http://www.folky.fr/~edouard/energy/tiles/{z}/{x}/{y}.png';
+    </script>
+  <!-- @endif -->
+
     <!-- build:js(src) scripts/vendor.js -->
     <!-- bower:js -->
     <!-- run `gulp wiredep` to automaticaly populate bower script dependencies -->

@@ -43,7 +43,7 @@ gulp.task('html', ['inject', 'partials'], function () {
     .pipe($.rev())
     .pipe(jsFilter)
     .pipe($.ngAnnotate())
-    .pipe($.uglify({preserveComments: $.uglifySaveLicense}))
+    // .pipe($.uglify({preserveComments: $.uglifySaveLicense}))
     .pipe(jsFilter.restore())
     .pipe(cssFilter)
     .pipe($.replace('../bootstrap/fonts', 'fonts'))
@@ -61,6 +61,16 @@ gulp.task('html', ['inject', 'partials'], function () {
     .pipe(htmlFilter.restore())
     .pipe(gulp.dest(paths.dist + '/'))
     .pipe($.size({ title: paths.dist + '/', showFiles: true }));
+});
+
+gulp.task('tiles', function () {
+  return gulp.src(paths.src + '/assets/tiles/**/*')
+    .pipe(gulp.dest(paths.dist + '/assets/tiles/'));
+});
+
+gulp.task('data', function () {
+  return gulp.src(paths.src + '/data/**/*')
+    .pipe(gulp.dest(paths.dist + '/data/'));
 });
 
 gulp.task('images', function () {
@@ -84,4 +94,4 @@ gulp.task('clean', function (done) {
   $.del([paths.dist + '/', paths.tmp + '/'], done);
 });
 
-gulp.task('build', ['html', 'images', 'fonts', 'misc']);
+gulp.task('build', ['html', 'images', 'fonts', 'misc', 'data']);

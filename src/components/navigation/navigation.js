@@ -2,7 +2,7 @@ function energyNavigation($http) {
     function navigationController($scope) {
 
         $scope.index = 0;
-        $http.get('data.json').success(function(data) {
+        $http.get('data/data.json').success(function(data) {
 
             $scope.data = data;
 
