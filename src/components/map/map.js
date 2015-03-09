@@ -1,6 +1,6 @@
 'use strict';
 
-function energyMap(markerService, leafletData) {
+function energyMap(markerService, leafletData, navService, $timeout) {
     function MapCtrl($scope) {
         var mv = this;
         $scope.map = {};
@@ -33,9 +33,14 @@ function energyMap(markerService, leafletData) {
             },
             markers: markerService.list
         });
+
         $scope.$on('resize', function resizeMap() {
             leafletData.getMap().then(function (map) {
                 map._onResize();
+                navService.getCurrentBounds().then(function(bounds) {
+                    // $scope.map.goTo(bounds);
+                    $timeout(function(){$scope.map.goTo(bounds);});
+                });
             });
         });
 
@@ -88,6 +93,9 @@ function energyMap(markerService, leafletData) {
                 map.fitBounds(L.latLngBounds(bounds.southWest, bounds.northEast));
             });
         };
+        $scope.$on('boundsSelected', function(e, bounds) {
+            return $scope.map.goTo(bounds);
+        });
 
         // debug
         $scope.map._selectedZone = [];
@@ -104,7 +112,6 @@ function energyMap(markerService, leafletData) {
     return {
         restrict: 'E',
         controller: MapCtrl,
-        priority: 10,
         scope: {
             'map' : '='
         },
@@ -112,4 +119,4 @@ function energyMap(markerService, leafletData) {
     }
 }
 angular.module('energy')
-    .directive('energyMap', ['markerService', 'leafletData', energyMap]);
+    .directive('energyMap', ['markerService', 'leafletData', 'navService', '$timeout', energyMap]);
