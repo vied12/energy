@@ -1,26 +1,31 @@
 
 <div class="container-fluid editor-mode">
     <div class="row">
-<!--         
+        
         <div class="col-md-3">
             <div ng-include="'components/editor/editor.html'"></div>
         </div>
-        <div class="col-md-9"> -->
+        <div class="col-md-9">
             <energy-map map="map"></energy-map>
             <energy-navigation map="map"></energy-navigation>
             <div class="row">
                 <div class="col-md-6">Last click:
                     <div ng-pluralize count="map._selectedZone.length" when="{0: 'southWest', 'one': 'northEast', 'other':''}"></div>
-                    <pre ng-if="map._selectedZone.length == 2">
-{
+                    <pre ng-if="map._selectedZone.length == 2">{
     "southWest": {{ map._selectedZone[0] }},
     "northEast": {{ map._selectedZone[1] }}
-}
-                    </pre>
+}</pre>
                 </div>
-                <div class="col-md-6">Current zoom:<pre>{{ map.center.zoom }}</pre></div>
-                <pre>{{ markers | json }}</pre>
+                <div class="col-md-2">Current zoom:<pre>{{ map.center.zoom }}</pre></div>
             </div>
-        <!-- </div> -->
+            <div class="row">
+                <div class="col-md-6">
+                    <pre style="max-height:100px; overflow:auto;">{{ map.markers | json }}</pre>
+                </div>
+                <div class="col-md-6">
+                    <pre style="max-height:100px; overflow:auto;">{{ data | json }}</pre>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

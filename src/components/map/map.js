@@ -56,6 +56,23 @@ function energyMap(markerService, leafletData, navService, $timeout) {
                         } else {
                             layer.setOpacity(1);
                         }
+                        // FIXME: only for links
+                        var new_size = {
+                            4: 109 / 2,
+                            5: 109,
+                            6: 109 * 2
+                        }
+                        angular.element(layer._icon).find('.link').css({width: new_size[map.getZoom()], height: new_size[map.getZoom()]});
+                    }
+                });
+            }); 
+        }
+
+        function hideMarker() {
+            leafletData.getMap().then(function (map) {
+                _.values(map._layers).forEach(function (layer) {
+                    if (_.has(layer.options, 'icon')) {
+                        layer.setOpacity(0);
                     }
                 });
             }); 
@@ -63,19 +80,20 @@ function energyMap(markerService, leafletData, navService, $timeout) {
 
         $scope.$watch('map.markers', hideAndShowMarker, true);
         $scope.$on('leafletDirectiveMap.zoomend', hideAndShowMarker);
+        $scope.$on('leafletDirectiveMap.zoomstart', hideMarker);
 
-        function styleMarkers() {
-            leafletData.getMap().then(function (map) {
-                _.values(map._layers).forEach(function (layer) {
-                    if (_.has(layer.options, 'icon')) {
-                        if (_.has(layer.options.icon.options, 'style')) {
-                            angular.element(layer._icon).css(layer.options.icon.options.style);
-                        }
-                    }
-                });
-            });
-        }
-        $scope.$watch('markers', styleMarkers, true);
+        // function styleMarkers() {
+        //     leafletData.getMap().then(function (map) {
+        //         _.values(map._layers).forEach(function (layer) {
+        //             if (_.has(layer.options, 'icon')) {
+        //                 if (_.has(layer.options.icon.options, 'style')) {
+        //                     angular.element(layer._icon).css(layer.options.icon.options.style);
+        //                 }
+        //             }
+        //         });
+        //     });
+        // }
+        // $scope.$watch('markers', styleMarkers, true);
 
         var rects = [];
         $scope.map.goTo = function (bounds) {
@@ -103,11 +121,12 @@ function energyMap(markerService, leafletData, navService, $timeout) {
                 $scope.map._selectedZone = [];
             }
         });
-
+        markerService.add('link');
     }
     return {
         restrict: 'E',
         controller: MapCtrl,
+        replace: true,
         scope: {
             'map' : '='
         },

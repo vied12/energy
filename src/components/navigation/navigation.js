@@ -23,20 +23,19 @@ function energyNavigation($http, navService) {
 navService.$inject = ['$http', '$rootScope'];
 function navService($http, $rootScope) {
     var index = 0;
-    var data = $http.get('data/data.json');
+    var data = $http.get('assets/data/data.json').then(function(data){return data.data});
     var currentBounds;
 
     function goTo(bounds) {
-        // $scope.map.goTo(bounds);
         currentBounds = bounds;
         $rootScope.$broadcast('boundsSelected', bounds);
     }
 
     function next() {
         data.then(function(data) {
-            if (index < data.data.steps.length - 1) {
+            if (index < data.steps.length - 1) {
                 index++;
-                goTo(data.data.steps[index].bounds);
+                goTo(data.steps[index].bounds);
             }
         });
     }
@@ -45,24 +44,24 @@ function navService($http, $rootScope) {
         data.then(function(data) {
             if (index > 0) {
                 index--;
-                goTo(data.data.steps[index].bounds);
+                goTo(data.steps[index].bounds);
             }
         });
     }
 
     function getCurrentBounds() {
         return data.then(function(data) {
-            return data.data.steps[index].bounds;
+            return data.steps[index].bounds;
         });
     }
 
     return {
         next: next,
         previous: previous,
-        getCurrentBounds: getCurrentBounds
+        getCurrentBounds: getCurrentBounds,
         // goTo: goTo,
         // index: index,
-        // data: data
+        data: data
     }
 }
 

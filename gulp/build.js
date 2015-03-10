@@ -69,8 +69,8 @@ gulp.task('tiles', function () {
 });
 
 gulp.task('data', function () {
-  return gulp.src(paths.src + '/data/**/*')
-    .pipe(gulp.dest(paths.dist + '/data/'));
+  return gulp.src(paths.src + '/assets/data/**/*')
+    .pipe(gulp.dest(paths.dist + '/assets/data/'));
 });
 
 gulp.task('images', function () {
