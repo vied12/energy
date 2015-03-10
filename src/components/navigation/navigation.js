@@ -59,10 +59,10 @@ function navService($http, $rootScope) {
     return {
         next: next,
         previous: previous,
-        goTo: goTo,
-        getCurrentBounds: getCurrentBounds,
-        index: index,
-        data: data
+        getCurrentBounds: getCurrentBounds
+        // goTo: goTo,
+        // index: index,
+        // data: data
     }
 }
 
