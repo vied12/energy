@@ -10,8 +10,8 @@ angular.module('energy', ['ngCookies', 'ngTouch', 'ui.router', 'ui.bootstrap', '
             })
             .state('editor', {
                 controller: ['$scope', 'navService', function($scope, navService) {
-                    navService.data.then(function(data) {
-                        $scope.data = data;
+                    navService.steps.then(function(steps) {
+                        $scope.steps = steps;
                     });
                 }],
                 url: '/editor',

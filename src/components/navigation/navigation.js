@@ -8,22 +8,13 @@ function energyNavigation($http, navService) {
         templateUrl: 'components/navigation/view.html',
         replace: true,
         controller: navigationController
-        // controllerAs: 'nav',
-
-        // link: function(scope) {
-        //     scope.$watch('data', function() {
-        //         if (angular.isDefined(scope.data)) {
-        //             scope.goTo(scope.data.steps[scope.index].bounds);
-        //         }
-        //     });
-        // }
     }
 }
 
 navService.$inject = ['$http', '$rootScope'];
 function navService($http, $rootScope) {
     var index = 0;
-    var data = $http.get('assets/data/data.json').then(function(data){return data.data});
+    var steps = $http.get('assets/data/steps.json').then(function(response){return response.data.steps});
     var currentBounds;
 
     function goTo(bounds) {
@@ -32,26 +23,26 @@ function navService($http, $rootScope) {
     }
 
     function next() {
-        data.then(function(data) {
-            if (index < data.steps.length - 1) {
+        steps.then(function(steps) {
+            if (index < steps.length - 1) {
                 index++;
-                goTo(data.steps[index].bounds);
+                goTo(steps[index].bounds);
             }
         });
     }
 
     function previous() {
-        data.then(function(data) {
+        steps.then(function(steps) {
             if (index > 0) {
                 index--;
-                goTo(data.steps[index].bounds);
+                goTo(steps[index].bounds);
             }
         });
     }
 
     function getCurrentBounds() {
-        return data.then(function(data) {
-            return data.steps[index].bounds;
+        return steps.then(function(steps) {
+            return steps[index].bounds;
         });
     }
 
@@ -61,7 +52,7 @@ function navService($http, $rootScope) {
         getCurrentBounds: getCurrentBounds,
         // goTo: goTo,
         // index: index,
-        data: data
+        steps: steps
     }
 }
 

@@ -40,7 +40,7 @@ function energyMap(markerService, leafletData, navService, $timeout) {
             });
         });
 
-        function hideAndShowMarker() {
+        function onZoomChanged() {
             leafletData.getMap().then(function (map) {
                 _.values(map._layers).forEach(function (layer) {
                     if (_.has(layer.options, 'icon')) {
@@ -78,8 +78,8 @@ function energyMap(markerService, leafletData, navService, $timeout) {
             }); 
         }
 
-        $scope.$watch('map.markers', hideAndShowMarker, true);
-        $scope.$on('leafletDirectiveMap.zoomend', hideAndShowMarker);
+        $scope.$watch('map.markers', onZoomChanged, true);
+        $scope.$on('leafletDirectiveMap.zoomend', onZoomChanged);
         $scope.$on('leafletDirectiveMap.zoomstart', hideMarker);
 
         // function styleMarkers() {
@@ -121,7 +121,6 @@ function energyMap(markerService, leafletData, navService, $timeout) {
                 $scope.map._selectedZone = [];
             }
         });
-        markerService.add('link');
     }
     return {
         restrict: 'E',
