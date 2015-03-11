@@ -143,10 +143,52 @@ function energyMap(markerService, leafletData, navService, $timeout) {
             var point = b.leafletEvent.latlng;
             if ($scope.map._selectedZone.length < 2) {
                 $scope.map._selectedZone.push(point);
+                var point1 = $scope.map._selectedZone[0];
+                var point2 = $scope.map._selectedZone[1];
+                var rect = L.rectangle([point1, point2], {
+                    color: "#ff7800", weight: 3, fill:false
+                });
+                leafletData.getMap().then(function (map) {
+                    rect.addTo(map);
+                });
+                rects.push(rect);
             } else {
                 $scope.map._selectedZone = [];
             }
         });
+        $scope.$on('leafletDirectiveMarker.click', function(e, args) {
+            $scope.map.markerIndexSelected = args.markerName;
+        });
+        document.onkeydown = function(e) {
+                e = e || window.event;
+                if (angular.isDefined($scope.map.markerIndexSelected)) {
+                    if (e.keyCode == '38') {
+                        // up arrow
+                        markerService.markers.then(function(markers) {
+                            markers[$scope.map.markerIndexSelected].lat += 0.1;
+                        });
+                    }
+                    else if (e.keyCode == '40') {
+                        // down arrow
+                        markerService.markers.then(function(markers) {
+                            markers[$scope.map.markerIndexSelected].lat -= 0.1;
+                        });
+                    }
+                    else if (e.keyCode == '37') {
+                       // left arrow
+                       markerService.markers.then(function(markers) {
+                            markers[$scope.map.markerIndexSelected].lng -= 0.1;
+                        });
+                    }
+                    else if (e.keyCode == '39') {
+                       // right arrow
+                       markerService.markers.then(function(markers) {
+                            markers[$scope.map.markerIndexSelected].lng += 0.1;
+                        });
+                    }
+                }
+        };
+
     }
     return {
         restrict: 'E',

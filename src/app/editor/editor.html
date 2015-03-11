@@ -11,19 +11,21 @@
             <div class="row">
                 <div class="col-md-6">Last click:
                     <div ng-pluralize count="map._selectedZone.length" when="{0: 'southWest', 'one': 'northEast', 'other':''}"></div>
-                    <pre ng-if="map._selectedZone.length == 2">{
-    "southWest": {{ map._selectedZone[0] }},
-    "northEast": {{ map._selectedZone[1] }}
-}</pre>
+                    <pre ng-if="map._selectedZone.length == 2">            "bounds": {
+                "southWest": {{ map._selectedZone[0] }},
+                "northEast": {{ map._selectedZone[1] }}
+            }</pre>
                 </div>
                 <div class="col-md-2">Current zoom:<pre>{{ map.center.zoom }}</pre></div>
             </div>
             <div class="row">
                 <div class="col-md-6">
                     <pre style="max-height:100px; overflow:auto;">{{ markers | json }}</pre>
+                    <a href="data:application/x-json;base64,{{ markers | json | btoa }}" download="markers.json">markers.json</a>
                 </div>
                 <div class="col-md-6">
                     <pre style="max-height:100px; overflow:auto;">{{ steps | json }}</pre>
+                    <a href="data:application/x-json;base64,{{ steps | json | btoa }}" download="steps.json">steps.json</a>
                 </div>
             </div>
         </div>

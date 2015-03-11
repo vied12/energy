@@ -1,6 +1,7 @@
 'use strict';
 
-angular.module('energy', ['ngCookies', 'ngTouch', 'ui.router', 'ui.bootstrap', 'leaflet-directive'])
+angular
+    .module('energy', ['ngCookies', 'ngTouch', 'ui.router', 'ui.bootstrap', 'leaflet-directive'])
     .config(function ($stateProvider, $urlRouterProvider) {
         $stateProvider
             .state('home', {
@@ -21,4 +22,17 @@ angular.module('energy', ['ngCookies', 'ngTouch', 'ui.router', 'ui.bootstrap', '
                 templateUrl: 'app/editor/editor.html'
             });
         $urlRouterProvider.otherwise('/');
-    });
+    })
+    .filter('btoa', function() {
+        return function(input) {
+            return btoa(input);
+        };
+    })
+    .config( [
+        '$compileProvider',
+        function( $compileProvider )
+        {   
+            $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|data:application)/);
+            // Angular before v1.2 uses $compileProvider.urlSanitizationWhitelist(...)
+        }
+    ]);
