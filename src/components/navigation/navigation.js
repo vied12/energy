@@ -50,8 +50,8 @@ function navService($http, $rootScope) {
         next: next,
         previous: previous,
         getCurrentBounds: getCurrentBounds,
-        // goTo: goTo,
-        // index: index,
+        goTo: goTo,
+        index: index,
         steps: steps
     }
 }

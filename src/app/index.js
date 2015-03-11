@@ -9,9 +9,12 @@ angular.module('energy', ['ngCookies', 'ngTouch', 'ui.router', 'ui.bootstrap', '
                 controller: 'MainCtrl'
             })
             .state('editor', {
-                controller: ['$scope', 'navService', function($scope, navService) {
+                controller: ['$scope', 'navService', 'markerService', function($scope, navService, markerService) {
                     navService.steps.then(function(steps) {
                         $scope.steps = steps;
+                        markerService.markers.then(function(markers) {
+                            $scope.markers = markers;
+                        });
                     });
                 }],
                 url: '/editor',

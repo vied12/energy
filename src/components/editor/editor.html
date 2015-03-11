@@ -1,28 +1,28 @@
 <div ng-controller="EditorCtrl as editor" class="Editor" height-like-window>
-    <a href="#" ng-click="editor.selectZone()" class="btn btn-default">Select a zone</a>
-    <a href="#" ng-click="editor.addNewLink()" class="btn btn-default">Add a new link</a>
+    <a ng-click="editor.selectZone()" class="btn btn-default">Select a zone</a>
+    <a ng-click="editor.addNewLink()" class="btn btn-default">Add a new link</a>
     <div class="Editor__links">
-        <div ng-repeat="link in editor.links" class="Editor__link">
+        <div ng-repeat="marker in editor.markers" class="Editor__link">
             <form class="form">
-                <div><a class="btn btn-danger pull-right" href="#" ng-click="editor.removeLink(link)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></div>
-                <div ng-bind="link.$$hashKey"></div>
-                <input type="text" ng-model="link.icon.html" placeholder="text" class="form-control" />
+                <div><a class="btn btn-danger pull-right" ng-click="editor.removeLink(marker)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></div>
+                <div ng-bind="marker.$$hashKey"></div>
+                <input type="text" ng-model="marker.href" placeholder="text" class="form-control" />
                 <div class="row">
                     <div class="col-md-6">
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">lat</span>
-                            <input type="number" ng-model="link.lat" class="form-control"  aria-describedby="basic-addon1" disabled>
+                            <input type="number" ng-model="marker.lat" class="form-control"  aria-describedby="basic-addon1" disabled>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="input-group">
-                            <input type="number" ng-model="link.lng" class="form-control"  aria-describedby="basic-addon2" disabled>
+                            <input type="number" ng-model="marker.lng" class="form-control"  aria-describedby="basic-addon2" disabled>
                             <span class="input-group-addon" id="basic-addon2">lng</span>
                         </div>
                     </div>
                 </div>
-                    <label>Limited for zoom: (comma separated)</label>
-                    <input ng-model="link.icon.limited_to_zoom" ng-list>
+                    <!-- <label>Limited for zoom: (comma separated)</label>
+                    <input ng-model="marker.limited_to_zoom" ng-list> -->
             </form>
         </div>
     </div>

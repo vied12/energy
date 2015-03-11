@@ -27,20 +27,47 @@ function energyMap(markerService, leafletData, navService, $timeout) {
                 },
                 scrollWheelZoom: true
             },
-            markers: markerService.list
         });
 
+        function updateMarkers() {
+            markerService.markers.then(function(markers) {
+                markers.forEach(function(marker) {
+                    if (marker.type === 'link') {
+                        angular.extend(marker, {
+                            draggable: true,
+                            icon: {
+                                limited_to_zoom: [4,5,6],
+                                type: 'div',
+                                html: '<div class="link"></div>',
+                                // html: '<a href="'+marker.href+'" target="_blank"><div class="link"></div></a>',
+                            }
+                        });
+                    }
+                });
+                $scope.map.markers = markers;
+            });
+        }
+        // add marker and update when needed
+        updateMarkers();
+        $scope.$on('markersUpdated', updateMarkers);
+
+        // center and relayout on resize
         $scope.$on('resize', function resizeMap() {
             leafletData.getMap().then(function (map) {
                 map._onResize();
                 navService.getCurrentBounds().then(function(bounds) {
                     // $scope.map.goTo(bounds);
-                    $timeout(function(){$scope.map.goTo(bounds);});
+                    $timeout(function() {
+                        $scope.map.goTo(bounds);
+                    });
                 });
             });
         });
 
         function onZoomChanged() {
+            // markerService.getMarkers().then(function(markers) {
+            //     console.log('onZoomChanged', markers);
+            // });
             leafletData.getMap().then(function (map) {
                 _.values(map._layers).forEach(function (layer) {
                     if (_.has(layer.options, 'icon')) {
@@ -77,7 +104,6 @@ function energyMap(markerService, leafletData, navService, $timeout) {
                 });
             }); 
         }
-
         $scope.$watch('map.markers', onZoomChanged, true);
         $scope.$on('leafletDirectiveMap.zoomend', onZoomChanged);
         $scope.$on('leafletDirectiveMap.zoomstart', hideMarker);

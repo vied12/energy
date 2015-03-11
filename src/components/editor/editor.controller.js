@@ -1,11 +1,14 @@
 'use strict';
 
 function EditorCtrl($scope, markerService, $window) {
-    this.links = markerService.list;
-    this.addNewLink = markerService.add;
-    this.removeLink = markerService.remove;
-    this.zoneSelected = [];
-    this.selectZone = function (e,b) {
+    var vm = this;
+    markerService.markers.then(function(markers) {
+        vm.markers = markers;
+    });
+    vm.addNewLink = markerService.add.bind(null, 'link');
+    vm.removeLink = markerService.remove;
+    vm.zoneSelected = [];
+    vm.selectZone = function (e,b) {
         angular.element($window).bind('click', function (e,b){
             console.log(e,b);
         });
