@@ -1,6 +1,6 @@
 'use strict';
 
-function energyMap(markerService, leafletData, navService, $timeout) {
+function energyMap(markerService, imageOverlayService, leafletData, navService, $timeout) {
     function MapCtrl($scope) {
         var mv = this;
         $scope.map = {};
@@ -65,14 +65,12 @@ function energyMap(markerService, leafletData, navService, $timeout) {
         });
 
         function onZoomChanged() {
-            // markerService.getMarkers().then(function(markers) {
-            //     console.log('onZoomChanged', markers);
-            // });
             leafletData.getMap().then(function (map) {
                 _.values(map._layers).forEach(function (layer) {
-                    if (_.has(layer.options, 'icon')) {
-                        if (_.has(layer.options.icon.options, 'limited_to_zoom') && layer.options.icon.options.limited_to_zoom.length > 0) {
-                            var limited_to_zoom = _.map(layer.options.icon.options.limited_to_zoom, function(zoom) {
+                    if (_.has(layer.options, 'icon') || _.has(layer, 'limited_to_zoom')) {
+                        var limits = layer.limited_to_zoom || layer.options.icon.options.limited_to_zoom;
+                        if (limits.length > 0) {
+                            var limited_to_zoom = _.map(limits, function(zoom) {
                                 return parseInt(zoom);
                             });
                             if (limited_to_zoom.indexOf(map.getZoom()) > -1) {
@@ -135,6 +133,18 @@ function energyMap(markerService, leafletData, navService, $timeout) {
         };
         $scope.$on('boundsSelected', function(e, bounds) {
             return $scope.map.goTo(bounds);
+        });
+
+        // image overlays
+        imageOverlayService.imageOverlays.then(function(imageOverlays) {
+            leafletData.getMap().then(function (map) {
+                imageOverlays.forEach(function(imageOverlay) {
+                    var bounds = [imageOverlay.bounds.southWest, imageOverlay.bounds.northEast];
+                    var layer = L.imageOverlay(imageOverlay.href, bounds);
+                    layer.limited_to_zoom = imageOverlay.limited_to_zoom;
+                    layer.addTo(map);
+                });
+            });
         });
 
         // debug
@@ -201,4 +211,4 @@ function energyMap(markerService, leafletData, navService, $timeout) {
     }
 }
 angular.module('energy')
-    .directive('energyMap', ['markerService', 'leafletData', 'navService', '$timeout', energyMap]);
+    .directive('energyMap', ['markerService', 'imageOverlayService', 'leafletData', 'navService', '$timeout', energyMap]);

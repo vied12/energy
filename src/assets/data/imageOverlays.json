@@ -1,0 +1,13 @@
+{
+    "imageOverlays": [
+        {
+            "type": "imageOverlay",
+            "href": "assets/images/34_animPSD_3.gif",
+            "bounds": {
+                "southWest": {"lat":47.98992166741417,"lng":62.8857421875},
+                "northEast": {"lat":9.96885060854611,"lng":142.6904296875}
+            },
+            "limited_to_zoom": [0,1,2,3]
+        }
+    ]
+}

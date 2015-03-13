@@ -53,5 +53,19 @@ function markerService($http, $q, $rootScope) {
     };
 }
 
+markerService.$inject = ['$http', '$q', '$rootScope'];
+function imageOverlayService($http, $q, $rootScope) {
+
+    var imageOverlays = $http.get('assets/data/imageOverlays.json').then(function(response) {
+        return response.data.imageOverlays;
+    });
+
+    return {
+        imageOverlays: imageOverlays
+    }
+
+}
+
 angular.module('energy')
-    .service('markerService', markerService);
+    .service('markerService', markerService)
+    .service('imageOverlayService', imageOverlayService);
