@@ -53,8 +53,8 @@ function markerService($http, $q, $rootScope) {
     };
 }
 
-markerService.$inject = ['$http', '$q', '$rootScope'];
-function imageOverlayService($http, $q, $rootScope) {
+imageOverlayService.$inject = ['$http'];
+function imageOverlayService($http) {
 
     var imageOverlays = $http.get('assets/data/imageOverlays.json').then(function(response) {
         return response.data.imageOverlays;
