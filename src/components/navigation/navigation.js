@@ -1,48 +1,57 @@
 function energyNavigation($http, navService) {
     function navigationController($scope) {
-        $scope.previous = navService.previous;
-        $scope.next = navService.next;
+        var vm = this;
+        vm.previous = navService.previous;
+        vm.next = navService.next;
+        vm.info = navService.info;
+        vm.goTo = navService.goTo;
+        navService.steps.then(function(steps) {
+            vm.steps = steps;
+        });
     }
     return {
         restrict: 'E',
         templateUrl: 'components/navigation/view.html',
         replace: true,
-        controller: navigationController
+        scope: true,
+        controller: navigationController,
+        controllerAs: 'nav'
     }
 }
 
 navService.$inject = ['$http', '$rootScope'];
 function navService($http, $rootScope) {
-    var index = 0;
+    var info = {stepIndex: 0};
     var steps = $http.get('assets/data/steps.json').then(function(response){return response.data.steps});
     var currentBounds;
 
-    function goTo(bounds) {
-        currentBounds = bounds;
-        $rootScope.$broadcast('boundsSelected', bounds);
+    function goTo(i) {
+        info.stepIndex = i;
+        return steps.then(function(steps) {
+            currentBounds = steps[i].bounds;
+            $rootScope.$broadcast('boundsSelected', currentBounds);
+        });
     }
 
     function next() {
-        steps.then(function(steps) {
-            if (index < steps.length - 1) {
-                index++;
-                goTo(steps[index].bounds);
+        return steps.then(function(steps) {
+            if (info.stepIndex < steps.length - 1) {
+                goTo(info.stepIndex + 1);
             }
         });
     }
 
     function previous() {
-        steps.then(function(steps) {
-            if (index > 0) {
-                index--;
-                goTo(steps[index].bounds);
+        return steps.then(function(steps) {
+            if (info.stepIndex > 0) {
+                goTo(info.stepIndex - 1);
             }
         });
     }
 
     function getCurrentBounds() {
         return steps.then(function(steps) {
-            return steps[index].bounds;
+            return steps[info.stepIndex].bounds;
         });
     }
 
@@ -51,7 +60,7 @@ function navService($http, $rootScope) {
         previous: previous,
         getCurrentBounds: getCurrentBounds,
         goTo: goTo,
-        index: index,
+        info: info,
         steps: steps
     }
 }

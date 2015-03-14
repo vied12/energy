@@ -1,4 +1,14 @@
 <div class="Navigation">
-    <a ng-click="previous()">&lt; previous</a> | 
-    <a ng-click="next()">next &gt;</a>
+    
+    <div>
+        <ul>
+            <li><a ng-click="nav.previous()">&lt;</a></li>
+            <li
+              ng-repeat="step in nav.steps"
+              ng-click="nav.goTo($index)"
+              class="bullet"
+              ng-class="{'active': $index === nav.info.stepIndex}">{{ $index }}</li>
+            <li><a ng-click="nav.next()">&gt;</a></li>
+        </ul>
+    </div>
 </div>

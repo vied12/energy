@@ -2,10 +2,30 @@
     position: absolute;
     left: 50%;
     bottom: 20px;
-    background-color: rgba(255, 255, 255, 0.93);
+    background-color: rgba(0, 0, 0, 0.93);
+    color: white;
     padding: 10px;
     font-size: 2em;
     .editor-mode & {
         bottom: 200px;
+    }
+    li {
+        display: inline-block;
+        &.bullet {
+            width: 10px;
+            height: 10px;
+            margin: 1px;
+            text-indent: -999px;
+            cursor: pointer;
+            background-color: transparent;
+            border: 1px solid #FFF;
+            border-radius: 10px;
+            &.active {
+                width: 12px;
+                height: 12px;
+                margin: 0px;
+                background-color: #FFF;
+            }
+        }
     }
 }
