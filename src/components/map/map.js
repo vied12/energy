@@ -11,6 +11,10 @@ function energyMap(markerService, imageOverlayService, leafletData, navService, 
                 lng: 0,
                 zoom: 2
             },
+            // maxBounds: {
+            //     "southWest": {"lat":84.8024737243345,"lng":-176.8359375},
+            //     "northEast": {"lat":-61.77312286453146,"lng":178.59375}
+            // },
             defaults: {
                 tileLayer: tiles_url,
                 zoomControlPosition: 'topright',
