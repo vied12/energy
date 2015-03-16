@@ -7,7 +7,7 @@
               ng-click="nav.goTo($index)"
               title="{{ step.shortName }}"
               class="bullet"
-              ng-class="{'active': $index === nav.info.stepIndex}">{{ $index }}</li>
+              ng-class="{'active': $index === nav.info.stepIndex}"></li>
             <li><a ng-click="nav.previous()">&lt;</a></li>
             <li><a ng-click="nav.next()">&gt;</a></li>
         </ul>
