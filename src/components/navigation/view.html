@@ -12,4 +12,6 @@
             <li><a ng-click="nav.next()">&gt;</a></li>
         </ul>
     </div>
+    <div>Current step: #{{ nav.info.stepIndex }}</div>
+    <div>Short name: {{ nav.steps[nav.info.stepIndex].shortName }}</div>
 </div>
