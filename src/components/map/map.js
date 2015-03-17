@@ -40,7 +40,7 @@ function energyMap(markerService, imageOverlayService, leafletData, navService, 
                         angular.extend(marker, {
                             draggable: true,
                             icon: {
-                                limited_to_zoom: [4,5,6],
+                                limited_to_zoom: marker.limited_to_zoom,
                                 type: 'div',
                                 html: '<div class="link"></div>',
                                 // html: '<a href="'+marker.href+'" target="_blank"><div class="link"></div></a>',
@@ -54,6 +54,7 @@ function energyMap(markerService, imageOverlayService, leafletData, navService, 
         // add marker and update when needed
         updateMarkers();
         $scope.$on('markersUpdated', updateMarkers);
+        $scope.$watch('map.markers', updateMarkers, true);
 
         // center and relayout on resize
         $scope.$on('resize', function resizeMap() {

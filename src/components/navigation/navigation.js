@@ -58,6 +58,8 @@ function navService($http, $rootScope, $stateParams, $state) {
         });
     }
 
+    goTo(info.stepIndex);
+
     return {
         next: next,
         previous: previous,

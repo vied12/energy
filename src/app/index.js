@@ -13,12 +13,22 @@ angular
                 controller: ['$scope', 'navService', 'markerService', function($scope, navService, markerService) {
                     navService.steps.then(function(steps) {
                         $scope.steps = steps;
-                        markerService.markers.then(function(markers) {
-                            $scope.markers = markers;
-                        });
                     });
+                    markerService.markers.then(function(markers) {
+                        $scope.markers = markers;
+                    });
+                    $scope.getMarker = function() {
+                        var new_markers = angular.copy($scope.markers);
+                        return {
+                            markers: _.map(new_markers, function(m) {
+                                delete m.icon;
+                                delete m.draggable;
+                                return m;
+                            })
+                        }
+                    };
                 }],
-                url: '/editor',
+                url: '/editor?step',
                 templateUrl: 'app/editor/editor.html'
             });
         $urlRouterProvider.otherwise('/');

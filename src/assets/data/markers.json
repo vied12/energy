@@ -1,10 +1,14 @@
 {
-    "markers": [
-        {
-            "type": "link",
-            "lat": 49.83798245308484,
-            "lng": -38.232421875,
-            "href": "http://google.fr"
-        }
-    ]
+  "markers": [
+    {
+      "type": "link",
+      "lat": 70.22974449563026,
+      "lng": -154.775390625,
+      "href": "http://google.fr",
+      "limited_to_zoom": [
+        4,
+        5
+      ]
+    }
+  ]
 }
