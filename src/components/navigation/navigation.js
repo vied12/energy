@@ -19,14 +19,17 @@ function energyNavigation($http, navService) {
     }
 }
 
-navService.$inject = ['$http', '$rootScope'];
-function navService($http, $rootScope) {
-    var info = {stepIndex: 0};
+navService.$inject = ['$http', '$rootScope', '$stateParams', '$state'];
+function navService($http, $rootScope, $stateParams, $state) {
+    var info = {stepIndex: parseInt($stateParams.step || 0)};
     var steps = $http.get('assets/data/steps.json').then(function(response){return response.data.steps});
     var currentBounds;
 
     function goTo(i) {
         info.stepIndex = i;
+        // update the url
+        $state.go('.', {step: i}, {notify: false});
+        // send an event to asking to update the area
         return steps.then(function(steps) {
             currentBounds = steps[i].bounds;
             $rootScope.$broadcast('boundsSelected', currentBounds);

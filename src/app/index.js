@@ -5,7 +5,7 @@ angular
     .config(function ($stateProvider, $urlRouterProvider) {
         $stateProvider
             .state('home', {
-                url: '/',
+                url: '/?step',
                 templateUrl: 'app/main/main.html',
                 controller: 'MainCtrl'
             })
