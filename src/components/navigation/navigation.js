@@ -8,6 +8,10 @@ function energyNavigation($http, navService) {
         navService.steps.then(function(steps) {
             vm.steps = steps;
         });
+        vm.setMarkerStyle = function(index) {
+            var offset = (index / (vm.steps.length-1)) * 100;
+            return {left: offset + '%'};
+        };
     }
     return {
         restrict: 'E',

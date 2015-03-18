@@ -1,17 +1,41 @@
-<div class="Navigation">
-    
-    <div>
-        <ul>
-            <li
+<div class="Navigation" class="transition">
+<!-- -            <li
+-              ng-repeat="step in nav.steps"
+-              ng-click="nav.goTo($index)"
+-              title="{{ step.shortName }}"
+-              class="bullet"
+-              ng-class="{'active': $index === nav.info.stepIndex}"></li>
+-            <li><a ng-click="nav.previous()">&lt;</a></li>
+-            <li><a ng-click="nav.next()">&gt;</a></li> -->
+    <!-- Imprint button -->
+    <div class="info">
+        <a class="transition cd-popup-trigger" href="0#"><img width="12px" height="27px" src="assets/images/info.svg" alt="Info"/></a>
+    </div>
+
+    <!-- Timeline -->
+    <div class="timeline">
+        <div class="timeline-bar">
+            <div
+              class="timeline-marker"
               ng-repeat="step in nav.steps"
               ng-click="nav.goTo($index)"
-              title="{{ step.shortName }}"
-              class="bullet"
-              ng-class="{'active': $index === nav.info.stepIndex}"></li>
-            <li><a ng-click="nav.previous()">&lt;</a></li>
-            <li><a ng-click="nav.next()">&gt;</a></li>
+              ng-style="nav.setMarkerStyle($index)"
+              ng-class="{'active': $index === nav.info.stepIndex}">
+                <div class="timeline-point"></div>
+                <div class="toolbox">
+                    <span>{{ step.shortName }}: {{ step.chapter }}</span>
+                    <img width="130" height="90" src="assets/images/thumbnail.jpg" alt="thumbnail" />
+                </div>
+            </div>    
+        </div>
+    </div>
+    
+    <!-- Prev & Next buttons -->
+    <div class="next-prev">
+        <ul>
+            <li class="prev"><a class="transition" ng-click="nav.previous()"><img width="26" height="17" src="assets/images/prev.svg" alt="Prev" /></a></li>
+            <li class="next"><a class="transition" ng-click="nav.next()"><img width="26" height="17" src="assets/images/next.svg" alt="Next" /></a></li>
         </ul>
     </div>
-    <div>Current step: #{{ nav.info.stepIndex + 1 }}</div>
-    <div>Short name: {{ nav.steps[nav.info.stepIndex].shortName }}</div>
+    
 </div>

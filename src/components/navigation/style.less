@@ -1,31 +1,90 @@
 .Navigation {
-    position: absolute;
-    left: 50%;
-    bottom: 20px;
-    background-color: rgba(0, 0, 0, 0.93);
-    color: white;
-    padding: 10px;
-    font-size: 2em;
-    .editor-mode & {
-        bottom: 200px;
+    width: 100%;
+    height: 80px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, .75);
+    // opacity: 0;
+    // visibility: hidden;
+    .js-open & {
+        opacity: 1;
+        visibility: visible;
     }
-    li {
-        display: inline-block;
-        &.bullet {
-            width: 10px;
-            height: 10px;
-            margin: 1px;
-            text-indent: -999px;
-            cursor: pointer;
-            background-color: transparent;
-            border: 1px solid #FFF;
-            border-radius: 10px;
-            &.active {
-                width: 12px;
-                height: 12px;
-                margin: 0px;
-                background-color: #FFF;
+    /* Prev & Next buttons */
+    .next-prev {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+    .next,
+    .prev {
+        float: left;
+        border-left: 1px solid rgba(255, 255, 255, .15);
+    }
+    /* info button */
+    .info {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        border-right: 1px solid rgba(255, 255, 255, .25);
+    }
+    .next a,
+    .prev a,
+    .info a {
+        display: block;
+        width: 80px;
+        height: 80px;
+        line-height: 80px;
+        text-align: center;
+    }
+    .next-prev a:hover,
+    .info a:hover {
+        opacity: .3;
+    }
+    /* Timeline */
+    .timeline {
+      max-width: 1200px;
+      width: 50%;
+      height: 9px;
+      position: absolute;
+      left: 25%;
+      top: 50%;
+    }
+    .timeline-bar {
+      position: relative;
+      background: rgba(255, 255, 255, .15);
+      height: 1px;
+      width: 100%;
+    }
+    .timeline-marker {
+      position: absolute;
+      top: -4px;
+      z-index: 10;
+      cursor: pointer;
+      width: 9px;
+      height: 9px;
+      -webkit-transition: all 0.1s linear;
+      -moz-transition: all 0.1s linear;
+      -o-transition: all 0.1s linear;
+      transition: all 0.1s linear;
+        &:hover, &.active {
+            .timeline-point {
+                -webkit-transform: scale(1.5);
+                -moz-transform: scale(1.5);
+                -ms-transform: scale(1.5);
+                -o-transform: scale(1.5);
+                transform: scale(1.5);
+                //border: 5px solid rgba(255,255,255,.3);
             }
         }
+    }
+    .timeline-point {
+        border-radius: 100%;
+        display: block;
+        background: #999;
+        width: 9px;
+        height: 9px;
     }
 }

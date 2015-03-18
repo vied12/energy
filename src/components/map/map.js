@@ -18,6 +18,7 @@ function energyMap(markerService, imageOverlayService, leafletData, navService, 
             defaults: {
                 tileLayer: tiles_url,
                 zoomControlPosition: 'topright',
+                attributionControl: false,
                 tileLayerOptions: {
                     minZoom: 0,
                     maxZoom: 6,
