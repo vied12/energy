@@ -67,7 +67,7 @@ function navService($http, $rootScope, $stateParams, $state) {
                     if (bounds.contains(L.latLng(coord.lat, coord.lng))) {
                         // update the navigation
                         info.stepIndex = i;
-                        return true;
+                        return false;
                     }
                 }
             })
