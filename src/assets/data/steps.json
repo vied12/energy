@@ -50,6 +50,7 @@
         {
             "shortName": "1.6.1",
             "chapter": "Begriffsdefinitionen",
+            "subChapter": "Effizienz",
             "bounds": {
                 "southWest": {"lat":82.24392695897082,"lng":28.289794921874996},
                 "northEast": {"lat":77.44694030325893,"lng":56.766357421875}
@@ -57,7 +58,8 @@
         },
         {
             "shortName": "1.6.2",
-            "chapter": "",
+            "chapter": "Begriffsdefinitionen",
+            "subChapter": "Rebound Effekt",
             "bounds": {
                 "southWest": {"lat":77.44694030325893,"lng":28.201904296875},
                 "northEast": {"lat":71.92452773797697,"lng":57.645263671875}
@@ -65,7 +67,8 @@
         },
         {
             "shortName": "1.6.3",
-            "chapter": "",
+            "chapter": "Begriffsdefinitionen",
+            "subChapter": "Suffizienz",
             "bounds": {
                 "southWest": {"lat":67.34832460428412,"lng":57.67272949218749},
                 "northEast": {"lat":72.01972876525514,"lng":28.4490966796875}
@@ -73,7 +76,7 @@
         },
         {
             "shortName": "2.0",
-            "chapter": "",
+            "chapter": "Einflussgrößen",
             "bounds": {
                 "southWest": {"lat":82.30889251821553,"lng":59.8974609375},
                 "northEast": {"lat":67.47492238478702,"lng":177.4951171875}
@@ -81,7 +84,7 @@
         },
         {
             "shortName": "2.1",
-            "chapter": "",
+            "chapter": "Einflussgrößen und Wirkungsketten",
             "bounds": {
                 "southWest": {"lat":82.28533149704582,"lng":89.4287109375},
                 "northEast": {"lat":67.47492238478702,"lng":177.4951171875}
@@ -89,7 +92,7 @@
         },
         {
             "shortName": "2.2",
-            "chapter": "",
+            "chapter": "Stakeholder - Analyse",
             "bounds": {
                 "southWest": {"lat":74.17607298699065,"lng":88.934326171875},
                 "northEast": {"lat":78.81903553711727,"lng":60.01831054687499}
@@ -97,7 +100,7 @@
         },
         {
             "shortName": "2.3",
-            "chapter": "",
+            "chapter": "Visuelle Auswertung",
             "bounds": {
                 "southWest": {"lat":73.95893887377511,"lng":60.10620117187501},
                 "northEast": {"lat":67.33986082559095,"lng":88.978271484375}
@@ -105,7 +108,7 @@
         },
         {
             "shortName": "3.0",
-            "chapter": "",
+            "chapter": "Stadtraumtypologie",
             "bounds": {
                 "southWest": {"lat":66.24916310923315,"lng":-177.330322265625},
                 "northEast": {"lat":-33.7243396617476,"lng":-30.805664062500004}
@@ -113,7 +116,7 @@
         },
         {
             "shortName": "3.1",
-            "chapter": "",
+            "chapter": "Stadtraumtypologie Datenblätter",
             "bounds": {
                 "southWest": {"lat":39.36827914916014,"lng":-132.4072265625},
                 "northEast": {"lat":56.17002298293205,"lng":-177.0556640625}
@@ -121,7 +124,8 @@
         },
         {
             "shortName": "3.2.1",
-            "chapter": "",
+            "chapter": "Datenbeschaffung",
+            "subChapter": "Arbeitsschritte",
             "bounds": {
                 "southWest": {"lat":66.33750501996518,"lng":-30.695800781249996},
                 "northEast": {"lat":43.068887774169625,"lng":23.09326171875}
@@ -129,7 +133,8 @@
         },
         {
             "shortName": "3.2.2",
-            "chapter": "",
+            "chapter": "Datenbeschaffung",
+            "subChapter": "Voraussetzungen",
             "bounds": {
                 "southWest": {"lat":66.23145747862573,"lng":23.1591796875},
                 "northEast": {"lat":43.197167282501276,"lng":57.9638671875}
@@ -137,7 +142,8 @@
         },
         {
             "shortName": "3.2.3",
-            "chapter": "",
+            "chapter": "Datenbeschaffung",
+            "subChapter": "Aufteilung der Teilgebiete",
             "bounds": {
                 "southWest": {"lat":43.068887774169625,"lng":-30.629882812499996},
                 "northEast": {"lat":5.7908968128719565,"lng":27.7294921875}
@@ -145,7 +151,8 @@
         },
         {
             "shortName": "3.2.4",
-            "chapter": "",
+            "chapter": "Datenbeschaffung",
+            "subChapter": "Abgrenzung der Teilgebiete",
             "bounds": {
                 "southWest": {"lat":43.004647127794435,"lng":27.75146484375},
                 "northEast": {"lat":25.958044673317843,"lng":57.89794921874999}
@@ -153,7 +160,8 @@
         },
         {
             "shortName": "3.2.5",
-            "chapter": "",
+            "chapter": "Datenbeschaffung",
+            "subChapter": "Nutzungsarten",
             "bounds": {
                 "southWest": {"lat":5.7908968128719565,"lng":57.54638671874999},
                 "northEast": {"lat":25.878994400196202,"lng":27.66357421875}
@@ -161,7 +169,8 @@
         },
         {
             "shortName": "3.2.6",
-            "chapter": "",
+            "chapter": "Datenbeschaffung",
+            "subChapter": "Auswertung Kennzahlensystematik",
             "bounds": {
                 "southWest": {"lat":5.61598581915534,"lng":-30.344238281249996},
                 "northEast": {"lat":-33.797408767572485,"lng":28.45458984375}
@@ -169,7 +178,8 @@
         },
         {
             "shortName": "3.2.7",
-            "chapter": "",
+            "chapter": "Datenbeschaffung",
+            "subChapter": "Berechnung",
             "bounds": {
                 "southWest": {"lat":5.703447982149503,"lng":28.45458984375},
                 "northEast": {"lat":-14.77488250651626,"lng":57.98583984375001}
@@ -177,7 +187,8 @@
         },
         {
             "shortName": "3.2.8",
-            "chapter": "",
+            "chapter": "Datenbeschaffung",
+            "subChapter": "Kennzahlenauswertung",
             "bounds": {
                 "southWest": {"lat":-15.029685756555674,"lng":28.45458984375},
                 "northEast": {"lat":-33.7243396617476,"lng":57.89794921874999}
@@ -185,7 +196,8 @@
         },
         {
             "shortName": "3.2.9",
-            "chapter": "",
+            "chapter": "Datenbeschaffung",
+            "subChapter": "Georeferenzierte Visualisierung",
             "bounds": {
                 "southWest": {"lat":-34.016241889667015,"lng":-30.454101562499996},
                 "northEast": {"lat":-61.270232790000605,"lng":57.78808593749999}
@@ -193,7 +205,8 @@
         },
         {
             "shortName": "3.3.1",
-            "chapter": "",
+            "chapter": "Ortsbegehung",
+            "subChapter": "Durchführung",
             "bounds": {
                 "southWest": {"lat":-33.87041555094183,"lng":-177.7587890625},
                 "northEast": {"lat":-61.270232790000605,"lng":-119.39941406249999}
@@ -201,7 +214,8 @@
         },
         {
             "shortName": "3.3.2",
-            "chapter": "",
+            "chapter": "Ortsbegehung",
+            "subChapter": "Anteile der Gebäudetypen",
             "bounds": {
                 "southWest": {"lat":-34.016241889667015,"lng":-119.5751953125},
                 "northEast": {"lat":-49.382372787009544,"lng":-90.04394531249999}
@@ -209,7 +223,8 @@
         },
         {
             "shortName": "3.3.3",
-            "chapter": "",
+            "chapter": "Ortsbegehung",
+            "subChapter": "Beiwerte",
             "bounds": {
                 "southWest": {"lat":-49.610709938074216,"lng":-119.5751953125},
                 "northEast": {"lat":-61.3546135846894,"lng":-89.5166015625}
@@ -217,7 +232,8 @@
         },
         {
             "shortName": "3.3.4",
-            "chapter": "",
+            "chapter": "Ortsbegehung",
+            "subChapter": "Visuelle Auswertung Ortsbegehung",
             "bounds": {
                 "southWest": {"lat":-34.016241889667015,"lng":-90.2197265625},
                 "northEast": {"lat":-61.270232790000605,"lng":-30.629882812499996}
@@ -225,7 +241,7 @@
         },
         {
             "shortName": "4.0",
-            "chapter": "",
+            "chapter": "Potentialermittlung",
             "bounds": {
                 "southWest": {"lat":66.16051056018838,"lng":59.19433593750001},
                 "northEast": {"lat":25.799891182088334,"lng":177.4951171875}
@@ -233,7 +249,7 @@
         },
         {
             "shortName": "4.1",
-            "chapter": "",
+            "chapter": "Energieströme",
             "bounds": {
                 "southWest": {"lat":56.26776108757582,"lng":59.3701171875},
                 "northEast": {"lat":5.965753671065536,"lng":177.67089843749997}
@@ -241,7 +257,7 @@
         },
         {
             "shortName": "4.2",
-            "chapter": "",
+            "chapter": "Stoffströme",
             "bounds": {
                 "southWest": {"lat":5.7908968128719565,"lng":59.3701171875},
                 "northEast": {"lat":-33.137551192346145,"lng":175.2099609375}
@@ -249,7 +265,8 @@
         },
         {
             "shortName": "4.3.1",
-            "chapter": "",
+            "chapter": "Biogene energetische Potentiale",
+            "subChapter": "biogene potentiale",
             "bounds": {
                 "southWest": {"lat":-49.210420445650286,"lng":89.09912109375},
                 "northEast": {"lat":-34.016241889667015,"lng":60.09521484375}
@@ -257,7 +274,8 @@
         },
         {
             "shortName": "4.3.2",
-            "chapter": "",
+            "chapter": "Biogene energetische Potentiale",
+            "subChapter": "optimierungspotentiale",
             "bounds": {
                 "southWest": {"lat":-49.210420445650286,"lng":60.00732421875},
                 "northEast": {"lat":-61.01572481397616,"lng":89.18701171875}
@@ -265,7 +283,8 @@
         },
         {
             "shortName": "4.4.1",
-            "chapter": "",
+            "chapter": "Lebenszyklusberechnung",
+            "subChapter": "Arbeitsschritte in der Lebenszyklusberechnung",
             "bounds": {
                 "southWest": {"lat":-34.016241889667015,"lng":89.36279296875},
                 "northEast": {"lat":-61.05828537037916,"lng":147.54638671875}
@@ -273,7 +292,8 @@
         },
         {
             "shortName": "4.4.2",
-            "chapter": "",
+            "chapter": "Lebenszyklusberechnung",
+            "subChapter": "Ökonomische betrachtung",
             "bounds": {
                 "southWest": {"lat":-34.089061315849946,"lng":148.60107421875},
                 "northEast": {"lat":-49.210420445650286,"lng":176.90185546875}
@@ -281,7 +301,8 @@
         },
         {
             "shortName": "4.4.3",
-            "chapter": "",
+            "chapter": "Lebenszyklusberechnung",
+            "subChapter": "Strategien der Optimierung",
             "bounds": {
                 "southWest": {"lat":-49.26780455063752,"lng":148.60107421875},
                 "northEast": {"lat":-61.05828537037916,"lng":177.25341796875}
