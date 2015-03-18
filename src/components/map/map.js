@@ -1,10 +1,10 @@
 'use strict';
 
-function energyMap(markerService, imageOverlayService, leafletData, navService, $timeout) {
+function energyMap(markerService, imageOverlayService, leafletData, navService, $timeout, $window) {
     function MapCtrl($scope) {
         var mv = this;
         $scope.map = {};
-        var tiles_url = window.TILES_URL;
+        var tiles_url = $window.TILES_URL;
         angular.extend($scope.map, {
             center: {
                 lat: 0,
@@ -62,10 +62,9 @@ function energyMap(markerService, imageOverlayService, leafletData, navService, 
 
         // center and relayout on resize
         $scope.$on('resize', function resizeMap() {
-            leafletData.getMap().then(function (map) {
+            return leafletData.getMap().then(function (map) {
                 map._onResize();
                 navService.getCurrentBounds().then(function(bounds) {
-                    // $scope.map.goTo(bounds);
                     $timeout(function() {
                         $scope.map.goTo(bounds);
                     });
@@ -220,4 +219,4 @@ function energyMap(markerService, imageOverlayService, leafletData, navService, 
     }
 }
 angular.module('energy')
-    .directive('energyMap', ['markerService', 'imageOverlayService', 'leafletData', 'navService', '$timeout', energyMap]);
+    .directive('energyMap', ['markerService', 'imageOverlayService', 'leafletData', 'navService', '$timeout', '$window', energyMap]);

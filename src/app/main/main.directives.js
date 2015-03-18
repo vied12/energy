@@ -11,7 +11,7 @@ angular.module('energy')
                 el.css('height', $window.innerHeight - offset + 'px');
                 $rootScope.$broadcast('resize');
             }
-            $timeout(setHeight);
+            setHeight();
             angular.element($window).on('resize', setHeight);
             el.on('$destroy', function cleanup() {
                 angular.element($window).off('resize', setHeight);

@@ -26,11 +26,11 @@ function navService($http, $rootScope, $stateParams, $state) {
     var currentBounds;
 
     function goTo(i) {
-        info.stepIndex = i;
         // update the url
         $state.go('.', {step: i}, {notify: false});
         // send an event to asking to update the area
         return steps.then(function(steps) {
+            info.stepIndex = i;
             currentBounds = steps[i].bounds;
             $rootScope.$broadcast('boundsSelected', currentBounds);
         });
@@ -83,7 +83,7 @@ function navService($http, $rootScope, $stateParams, $state) {
         goTo: goTo,
         info: info,
         steps: steps,
-        updateNavigationFromCoord: updateNavigationFromCoord
+        updateNavigationFromCoord: _.debounce(updateNavigationFromCoord, 1000)
     }
 }
 
