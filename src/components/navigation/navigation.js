@@ -1,10 +1,11 @@
 function energyNavigation($http, navService) {
-    function navigationController($scope) {
+    function navigationController() {
         var vm = this;
         vm.previous = navService.previous;
         vm.next = navService.next;
         vm.info = navService.info;
         vm.goTo = navService.goTo;
+        vm.openImprint = navService.toggleImprint.bind(null, true);
         navService.steps.then(function(steps) {
             vm.steps = steps;
         });
@@ -25,7 +26,10 @@ function energyNavigation($http, navService) {
 
 navService.$inject = ['$http', '$rootScope', '$stateParams', '$state'];
 function navService($http, $rootScope, $stateParams, $state) {
-    var info = {stepIndex: parseInt($stateParams.step || 0)};
+    var info = {
+        stepIndex: parseInt($stateParams.step || 0),
+        imprint: false
+    };
     var steps = $http.get('assets/data/steps.json').then(function(response){return response.data.steps});
     var currentBounds;
 
@@ -78,6 +82,14 @@ function navService($http, $rootScope, $stateParams, $state) {
         });
     }
 
+    function toggleImprint(open) {
+        if (angular.isDefined(open)) {
+            info.imprint = open;
+        } else {
+            info.imprint = !info.imprint;
+        }
+    }
+
     goTo(info.stepIndex);
 
     return {
@@ -86,6 +98,7 @@ function navService($http, $rootScope, $stateParams, $state) {
         getCurrentBounds: getCurrentBounds,
         goTo: goTo,
         info: info,
+        toggleImprint: toggleImprint,
         steps: steps,
         updateNavigationFromCoord: _.debounce(updateNavigationFromCoord, 500)
     }
