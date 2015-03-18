@@ -33,6 +33,10 @@ function energyMap(markerService, imageOverlayService, leafletData, navService, 
             },
         });
 
+        $scope.$watch('map.center', function(value) {
+            navService.updateNavigationFromCoord(value);
+        });
+
         function updateMarkers() {
             markerService.markers.then(function(markers) {
                 markers.forEach(function(marker) {

@@ -58,6 +58,22 @@ function navService($http, $rootScope, $stateParams, $state) {
         });
     }
 
+    function updateNavigationFromCoord(coord) {
+        var bounds;
+        return steps.then(function(steps) {
+            _.forEach(steps, function(step, i) {
+                if (step.shortName !== 'Overview') {
+                    bounds = L.latLngBounds(step.bounds.southWest, step.bounds.northEast);
+                    if (bounds.contains(L.latLng(coord.lat, coord.lng))) {
+                        // update the navigation
+                        info.stepIndex = i;
+                        return true;
+                    }
+                }
+            })
+        });
+    }
+
     goTo(info.stepIndex);
 
     return {
@@ -66,7 +82,8 @@ function navService($http, $rootScope, $stateParams, $state) {
         getCurrentBounds: getCurrentBounds,
         goTo: goTo,
         info: info,
-        steps: steps
+        steps: steps,
+        updateNavigationFromCoord: updateNavigationFromCoord
     }
 }
 
