@@ -38,8 +38,17 @@ function energyMap(markerService, imageOverlayService, leafletData, navService, 
         });
 
         function updateMarkers() {
+            leafletData.getMap().then(function (map) {
             markerService.markers.then(function(markers) {
-                markers.forEach(function(marker) {
+                var markers_ = []
+                markers
+                .filter(function(marker) {
+                    var limited_to_zoom = _.map(marker.limited_to_zoom, function(zoom) {
+                        return parseInt(zoom);
+                    });
+                    return limited_to_zoom.indexOf(map.getZoom()) > -1;
+                })
+                .forEach(function(marker) {
                     if (marker.type === 'link') {
                         angular.extend(marker, {
                             draggable: true,
@@ -50,9 +59,11 @@ function energyMap(markerService, imageOverlayService, leafletData, navService, 
                                 // html: '<a href="'+marker.href+'" target="_blank"><div class="link"></div></a>',
                             }
                         });
+                        markers_.push(marker);
                     }
                 });
-                $scope.map.markers = markers;
+                $scope.map.markers = markers_;
+            });
             });
         }
         // add marker and update when needed
@@ -75,7 +86,8 @@ function energyMap(markerService, imageOverlayService, leafletData, navService, 
         function onZoomChanged() {
             leafletData.getMap().then(function (map) {
                 _.values(map._layers).forEach(function (layer) {
-                    if (_.has(layer.options, 'icon') || _.has(layer, 'limited_to_zoom')) {
+                    // hide/show imageOverlow
+                    if (_.has(layer, '_image')) {
                         var limits = layer.limited_to_zoom || layer.options.icon.options.limited_to_zoom;
                         if (limits.length > 0) {
                             var limited_to_zoom = _.map(limits, function(zoom) {
@@ -89,6 +101,9 @@ function energyMap(markerService, imageOverlayService, leafletData, navService, 
                         } else {
                             layer.setOpacity(1);
                         }
+                    }
+                    // resize links
+                    if (_.has(layer.options, 'icon')) {
                         // FIXME: only for links
                         var new_size = {
                             4: 109 / 2,
@@ -110,9 +125,10 @@ function energyMap(markerService, imageOverlayService, leafletData, navService, 
                 });
             }); 
         }
-        $scope.$watch('map.markers', onZoomChanged, true);
+        $scope.$on('leafletDirectiveMap.zoomend', updateMarkers);
         $scope.$on('leafletDirectiveMap.zoomend', onZoomChanged);
-        $scope.$on('leafletDirectiveMap.zoomstart', hideMarker);
+        // $scope.$on('leafletDirectiveMap.zoomstart', hideMarker);
+        $scope.$watch('map.markers', onZoomChanged, true);
 
         // function styleMarkers() {
         //     leafletData.getMap().then(function (map) {

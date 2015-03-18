@@ -83,7 +83,7 @@ function navService($http, $rootScope, $stateParams, $state) {
         goTo: goTo,
         info: info,
         steps: steps,
-        updateNavigationFromCoord: _.debounce(updateNavigationFromCoord, 1000)
+        updateNavigationFromCoord: _.debounce(updateNavigationFromCoord, 500)
     }
 }
 
