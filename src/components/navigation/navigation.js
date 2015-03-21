@@ -46,17 +46,16 @@ function navService($http, $rootScope, $stateParams, $state) {
 
     function next() {
         return steps.then(function(steps) {
-            if (info.stepIndex < steps.length - 1) {
-                goTo(info.stepIndex + 1);
-            }
+            var next_step = (info.stepIndex < steps.length - 1) ? info.stepIndex + 1 : 0;
+            goTo(next_step);
         });
     }
 
     function previous() {
         return steps.then(function(steps) {
-            if (info.stepIndex > 0) {
-                goTo(info.stepIndex - 1);
-            }
+            var next_step = (info.stepIndex > 0) ? info.stepIndex - 1 : steps.length - 1;
+            goTo(next_step);
+
         });
     }
 
