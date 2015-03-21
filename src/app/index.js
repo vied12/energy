@@ -38,6 +38,15 @@ angular
             return btoa(input);
         };
     })
+    .filter('digit', function() {
+        return function(input) {
+            if (input !== null && input !== undefined) {
+              var str = "" + input;
+              while (str.length < 2) str = "0" + str;
+              return str;
+            }
+        };
+    })
     .config( [
         '$compileProvider',
         function( $compileProvider )
