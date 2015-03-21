@@ -107,9 +107,9 @@ function energyMap(markerService, imageOverlayService, leafletData, navService, 
                     if (_.has(layer.options, 'icon')) {
                         // FIXME: only for links
                         var new_size = {
-                            4: 109 / 2,
-                            5: 109,
-                            6: 109 * 2
+                            4: 40 / 3,
+                            5: 40 / 2,
+                            6: 40
                         }
                         angular.element(layer._icon).find('.link').css({width: new_size[map.getZoom()], height: new_size[map.getZoom()]});
                     }

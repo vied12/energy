@@ -33,8 +33,13 @@ function markerService($http, $q, $rootScope) {
                 markers.then(function(markers) {
                     markers.push({
                         type: 'link',
-                        lat: 49.83698245308484,
-                        lng: -38.582421875
+                        lat: markers[markers.length-1].lat,
+                        lng: markers[markers.length-1].lng,
+                        limited_to_zoom: [
+                            "4",
+                            "5",
+                            "6"
+                        ]
                     });
                     $rootScope.$broadcast('markersUpdated');
                 });

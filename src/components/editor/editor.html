@@ -4,10 +4,10 @@
     <div class="Editor__links">
         <div ng-repeat="marker in editor.markers" class="Editor__link" ng-class="{'active': map.markerIndexSelected == $index}">
             <form class="form">
-                <div><a class="btn btn-danger pull-right" ng-click="editor.removeLink(marker)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></div>
+                <div><a class="btn btn-danger btn-sm pull-right" ng-click="editor.removeLink(marker)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></div>
                 <div ng-bind="marker.$$hashKey" ng-click="map.markerIndexSelected=$index"></div>
                 <input type="text" ng-model="marker.href" placeholder="text" class="form-control" />
-                <div class="row">
+                <div class="row hidden">
                     <div class="col-md-6">
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">lat</span>

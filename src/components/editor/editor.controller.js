@@ -7,13 +7,13 @@ function EditorCtrl($scope, markerService, $window) {
     });
     vm.addNewLink = markerService.add.bind(null, 'link');
     vm.removeLink = markerService.remove;
-    vm.zoneSelected = [];
-    vm.selectZone = function (e,b) {
-        angular.element($window).bind('click', function (e,b){
-            console.log(e,b);
-        });
+    // vm.zoneSelected = [];
+    // vm.selectZone = function (e,b) {
+    //     angular.element($window).bind('click', function (e,b){
+    //         console.log(e,b);
+    //     });
 
-    }
+    // }
 }
 
 angular.module('energy')
