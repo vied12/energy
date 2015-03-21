@@ -340,6 +340,38 @@
         "6"
       ],
       "href": "http://www.umweltbundesamt.de/sites/default/files/medien/publikation/long/3959.pdf"
+    },
+    {
+      "type": "download",
+      "lat": 45.213003555993964,
+      "lng": -171.9580078125,
+      "limited_to_zoom": [
+        "4",
+        "5",
+        "6"
+      ],
+      "href": "",
+      "size": {
+        "4": 20,
+        "5": 40,
+        "6": 80
+      }
+    },
+    {
+      "type": "download",
+      "lat": -27.68352808378776,
+      "lng": 21.884765625,
+      "limited_to_zoom": [
+        "4",
+        "5",
+        "6"
+      ],
+      "href": "",
+      "size": {
+        "4": 40,
+        "5": 80,
+        "6": 160
+      }
     }
   ]
 }

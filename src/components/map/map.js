@@ -50,13 +50,13 @@ function energyMap(markerService, imageOverlayService, leafletData, navService, 
                     return limited_to_zoom.indexOf(map.getZoom()) > -1;
                 })
                 .forEach(function(marker) {
-                    if (marker.type === 'link') {
+                    if (marker.type === 'link' || marker.type === 'download') {
                         angular.extend(marker, {
                             draggable: true,
                             icon: {
                                 limited_to_zoom: marker.limited_to_zoom,
                                 type: 'div',
-                                html: '<div class="link"></div>',
+                                html: '<div class="'+marker.type+'"></div>',
                                 // html: '<a href="'+marker.href+'" target="_blank"><div class="link"></div></a>',
                             }
                         });
@@ -84,6 +84,11 @@ function energyMap(markerService, imageOverlayService, leafletData, navService, 
             });
         });
 
+        var link_size = {
+            4: 40 / 3,
+            5: 40 / 2,
+            6: 40
+        }
         function onZoomChanged() {
             leafletData.getMap().then(function (map) {
                 _.values(map._layers).forEach(function (layer) {
@@ -105,13 +110,11 @@ function energyMap(markerService, imageOverlayService, leafletData, navService, 
                     }
                     // resize links
                     if (_.has(layer.options, 'icon')) {
-                        // FIXME: only for links
-                        var new_size = {
-                            4: 40 / 3,
-                            5: 40 / 2,
-                            6: 40
+                        if (_.has(layer.options, 'size')) {
+                            angular.element(layer._icon).find('> div').css({width: layer.options.size[map.getZoom()], height: layer.options.size[map.getZoom()]});
+                        } else {
+                            angular.element(layer._icon).find('.link').css({width: link_size[map.getZoom()], height: link_size[map.getZoom()]});
                         }
-                        angular.element(layer._icon).find('.link').css({width: new_size[map.getZoom()], height: new_size[map.getZoom()]});
                     }
                 });
             }); 
