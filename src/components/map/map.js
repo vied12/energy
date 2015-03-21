@@ -1,6 +1,7 @@
 'use strict';
 
-function energyMap(markerService, imageOverlayService, leafletData, navService, $timeout, $window) {
+energyMap.$inject = ['markerService', 'imageOverlayService', 'leafletData', 'navService', '$timeout', '$window', '$state'];
+function energyMap(markerService, imageOverlayService, leafletData, navService, $timeout, $window, $state) {
     function MapCtrl($scope) {
         var mv = this;
         $scope.map = {};
@@ -11,10 +12,6 @@ function energyMap(markerService, imageOverlayService, leafletData, navService, 
                 lng: 0,
                 zoom: 2
             },
-            // maxBounds: {
-            //     "southWest": {"lat":84.8024737243345,"lng":-176.8359375},
-            //     "northEast": {"lat":-61.77312286453146,"lng":178.59375}
-            // },
             defaults: {
                 tileLayer: tiles_url,
                 zoomControlPosition: 'topright',
@@ -52,12 +49,11 @@ function energyMap(markerService, imageOverlayService, leafletData, navService, 
                 .forEach(function(marker) {
                     if (marker.type === 'link' || marker.type === 'download') {
                         angular.extend(marker, {
-                            draggable: true,
+                            draggable: $state.is("editor"),
                             icon: {
                                 limited_to_zoom: marker.limited_to_zoom,
                                 type: 'div',
-                                html: '<div class="'+marker.type+'"></div>',
-                                // html: '<a href="'+marker.href+'" target="_blank"><div class="link"></div></a>',
+                                html: $state.is("editor") ? '<div class="'+marker.type+'"></div>' : '<a href="'+marker.href+'" target="_blank"><div class="'+marker.type+'"></div></a>'
                             }
                         });
                         markers_.push(marker);
@@ -111,7 +107,7 @@ function energyMap(markerService, imageOverlayService, leafletData, navService, 
                     // resize links
                     if (_.has(layer.options, 'icon')) {
                         if (_.has(layer.options, 'size')) {
-                            angular.element(layer._icon).find('> div').css({width: layer.options.size[map.getZoom()], height: layer.options.size[map.getZoom()]});
+                            angular.element(layer._icon).find('div').css({width: layer.options.size[map.getZoom()], height: layer.options.size[map.getZoom()]});
                         } else {
                             angular.element(layer._icon).find('.link').css({width: link_size[map.getZoom()], height: link_size[map.getZoom()]});
                         }
@@ -150,12 +146,14 @@ function energyMap(markerService, imageOverlayService, leafletData, navService, 
         var rects = [];
         $scope.map.goTo = function (bounds) {
             leafletData.getMap().then(function (map) {
-                rects.forEach(function(rect) {map.removeLayer(rect);});
-                var rect = L.rectangle([bounds.southWest, bounds.northEast], {
-                    color: "#ff7800", weight: 3, fill:false
-                })
-                rect.addTo(map);
-                rects.push(rect);
+                if ($state.is("editor")) {
+                    rects.forEach(function(rect) {map.removeLayer(rect);});
+                    var rect = L.rectangle([bounds.southWest, bounds.northEast], {
+                        color: "#ff7800", weight: 3, fill:false
+                    })
+                    rect.addTo(map);
+                    rects.push(rect);
+                }
                 map.fitBounds(L.latLngBounds(bounds.southWest, bounds.northEast), {paddingBottomRight:[0, 40]});
             });
         };
@@ -176,56 +174,58 @@ function energyMap(markerService, imageOverlayService, leafletData, navService, 
         });
 
         // debug
-        $scope.map._selectedZone = [];
-        $scope.$on('leafletDirectiveMap.click', function(a,b) {
-            var point = b.leafletEvent.latlng;
-            if ($scope.map._selectedZone.length < 2) {
-                $scope.map._selectedZone.push(point);
-                var point1 = $scope.map._selectedZone[0];
-                var point2 = $scope.map._selectedZone[1];
-                var rect = L.rectangle([point1, point2], {
-                    color: "#ff7800", weight: 3, fill:false
-                });
-                leafletData.getMap().then(function (map) {
-                    rect.addTo(map);
-                });
-                rects.push(rect);
-            } else {
-                $scope.map._selectedZone = [];
-            }
-        });
-        $scope.$on('leafletDirectiveMarker.click', function(e, args) {
-            $scope.map.markerIndexSelected = args.markerName;
-        });
-        document.onkeydown = function(e) {
-                e = e || window.event;
-                if (angular.isDefined($scope.map.markerIndexSelected)) {
-                    if (e.keyCode == '38') {
-                        // up arrow
-                        markerService.markers.then(function(markers) {
-                            markers[$scope.map.markerIndexSelected].lat += 0.1;
-                        });
-                    }
-                    else if (e.keyCode == '40') {
-                        // down arrow
-                        markerService.markers.then(function(markers) {
-                            markers[$scope.map.markerIndexSelected].lat -= 0.1;
-                        });
-                    }
-                    else if (e.keyCode == '37') {
-                       // left arrow
-                       markerService.markers.then(function(markers) {
-                            markers[$scope.map.markerIndexSelected].lng -= 0.1;
-                        });
-                    }
-                    else if (e.keyCode == '39') {
-                       // right arrow
-                       markerService.markers.then(function(markers) {
-                            markers[$scope.map.markerIndexSelected].lng += 0.1;
-                        });
-                    }
+        if ($state.is("editor")) {
+            $scope.map._selectedZone = [];
+            $scope.$on('leafletDirectiveMap.click', function(a,b) {
+                var point = b.leafletEvent.latlng;
+                if ($scope.map._selectedZone.length < 2) {
+                    $scope.map._selectedZone.push(point);
+                    var point1 = $scope.map._selectedZone[0];
+                    var point2 = $scope.map._selectedZone[1];
+                    var rect = L.rectangle([point1, point2], {
+                        color: "#ff7800", weight: 3, fill:false
+                    });
+                    leafletData.getMap().then(function (map) {
+                        rect.addTo(map);
+                    });
+                    rects.push(rect);
+                } else {
+                    $scope.map._selectedZone = [];
                 }
-        };
+            });
+            $scope.$on('leafletDirectiveMarker.click', function(e, args) {
+                $scope.map.markerIndexSelected = args.markerName;
+            });
+            document.onkeydown = function(e) {
+                    e = e || window.event;
+                    if (angular.isDefined($scope.map.markerIndexSelected)) {
+                        if (e.keyCode == '38') {
+                            // up arrow
+                            markerService.markers.then(function(markers) {
+                                markers[$scope.map.markerIndexSelected].lat += 0.1;
+                            });
+                        }
+                        else if (e.keyCode == '40') {
+                            // down arrow
+                            markerService.markers.then(function(markers) {
+                                markers[$scope.map.markerIndexSelected].lat -= 0.1;
+                            });
+                        }
+                        else if (e.keyCode == '37') {
+                           // left arrow
+                           markerService.markers.then(function(markers) {
+                                markers[$scope.map.markerIndexSelected].lng -= 0.1;
+                            });
+                        }
+                        else if (e.keyCode == '39') {
+                           // right arrow
+                           markerService.markers.then(function(markers) {
+                                markers[$scope.map.markerIndexSelected].lng += 0.1;
+                            });
+                        }
+                    }
+            };
+        }
 
     }
     return {
@@ -239,4 +239,4 @@ function energyMap(markerService, imageOverlayService, leafletData, navService, 
     }
 }
 angular.module('energy')
-    .directive('energyMap', ['markerService', 'imageOverlayService', 'leafletData', 'navService', '$timeout', '$window', energyMap]);
+    .directive('energyMap', energyMap);
