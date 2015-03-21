@@ -147,12 +147,12 @@ function energyMap(markerService, imageOverlayService, leafletData, navService, 
         var rects = [];
         $scope.map.goTo = function (bounds) {
             leafletData.getMap().then(function (map) {
-                // rects.forEach(function(rect) {map.removeLayer(rect);});
-                // var rect = L.rectangle([bounds.southWest, bounds.northEast], {
-                //     color: "#ff7800", weight: 3, fill:false
-                // })
-                // rect.addTo(map);
-                // rects.push(rect);
+                rects.forEach(function(rect) {map.removeLayer(rect);});
+                var rect = L.rectangle([bounds.southWest, bounds.northEast], {
+                    color: "#ff7800", weight: 3, fill:false
+                })
+                rect.addTo(map);
+                rects.push(rect);
                 map.fitBounds(L.latLngBounds(bounds.southWest, bounds.northEast));
             });
         };

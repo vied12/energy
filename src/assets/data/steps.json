@@ -43,8 +43,8 @@
             "shortName": "1.5",
             "chapter": "Handlungsfelder und Leitfäden",
             "bounds": {
-                "southWest": {"lat":78.87004849291571,"lng":-59.96337890624999},
-                "northEast": {"lat":68.87935761076949,"lng":27.927246093749996}
+                "southWest": {"lat":78.85306975959564,"lng":-59.87548828125},
+                "northEast": {"lat":73.60299628304274,"lng":-1.25244140625}
             }
         },
         {
@@ -52,8 +52,8 @@
             "chapter": "Begriffsdefinitionen",
             "subChapter": "Effizienz",
             "bounds": {
-                "southWest": {"lat":82.24392695897082,"lng":28.289794921874996},
-                "northEast": {"lat":77.44694030325893,"lng":56.766357421875}
+                "southWest": {"lat":82.2379940231732,"lng":28.465576171875},
+                "northEast": {"lat":78.95455985775213,"lng":57.33764648437499}
             }
         },
         {
@@ -86,8 +86,8 @@
             "shortName": "2.1",
             "chapter": "Einflussgrößen und Wirkungsketten",
             "bounds": {
-                "southWest": {"lat":82.28533149704582,"lng":89.4287109375},
-                "northEast": {"lat":67.47492238478702,"lng":177.4951171875}
+                "southWest": {"lat":82.28533149704582,"lng":89.45068359374999},
+                "northEast": {"lat":75.84516854027044,"lng":172.33154296875}
             }
         },
         {
@@ -136,8 +136,8 @@
             "chapter": "Datenbeschaffung",
             "subChapter": "Voraussetzungen",
             "bounds": {
-                "southWest": {"lat":66.23145747862573,"lng":23.1591796875},
-                "northEast": {"lat":43.197167282501276,"lng":57.9638671875}
+                "southWest": {"lat":57.98480801923985,"lng":23.18115234375},
+                "northEast": {"lat":43.068887774169625,"lng":57.89794921874999}
             }
         },
         {
@@ -199,8 +199,8 @@
             "chapter": "Datenbeschaffung",
             "subChapter": "Georeferenzierte Visualisierung",
             "bounds": {
-                "southWest": {"lat":-34.016241889667015,"lng":-30.454101562499996},
-                "northEast": {"lat":-61.270232790000605,"lng":57.78808593749999}
+                "southWest": {"lat":-35.7465122599185,"lng":-27.88330078125},
+                "northEast": {"lat":-59.977005492196,"lng":46.73583984375}
             }
         },
         {
@@ -251,8 +251,8 @@
             "shortName": "4.1",
             "chapter": "Energieströme",
             "bounds": {
-                "southWest": {"lat":56.26776108757582,"lng":59.3701171875},
-                "northEast": {"lat":5.965753671065536,"lng":177.67089843749997}
+                "southWest": {"lat":55.97379820507658,"lng":59.8974609375},
+                "northEast": {"lat":8.754794702435618,"lng":150.4248046875}
             }
         },
         {
@@ -306,14 +306,6 @@
             "bounds": {
                 "southWest": {"lat":-49.26780455063752,"lng":148.60107421875},
                 "northEast": {"lat":-61.05828537037916,"lng":177.25341796875}
-            }
-        },
-        {
-            "shortName": "credits",
-            "chapter": "",
-            "bounds": {
-                "southWest": {"lat":84.62844925023141,"lng":149.139404296875},
-                "northEast": {"lat":82.88611062050008,"lng":177.352294921875}
             }
         }
     ]

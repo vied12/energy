@@ -18,7 +18,7 @@
                 </div>
                 <div class="col-md-2">Current zoom:<pre>{{ map.center.zoom }}</pre></div>
             </div>
-            <div class="row">
+            <div class="row hidden">
                 <div class="col-md-6">
                     <pre style="max-height:100px; overflow:auto;">{{ getMarker() | json }}</pre>
                     <a href="data:application/x-json;base64,{{ getMarker() | json | btoa }}" download="markers.json">markers.json</a>
