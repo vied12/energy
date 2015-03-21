@@ -156,7 +156,7 @@ function energyMap(markerService, imageOverlayService, leafletData, navService, 
                 })
                 rect.addTo(map);
                 rects.push(rect);
-                map.fitBounds(L.latLngBounds(bounds.southWest, bounds.northEast));
+                map.fitBounds(L.latLngBounds(bounds.southWest, bounds.northEast), {paddingBottomRight:[0, 40]});
             });
         };
         $scope.$on('boundsSelected', function(e, bounds) {
