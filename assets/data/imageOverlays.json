@@ -1,0 +1,40 @@
+{
+    "imageOverlays": [
+        {
+            "type": "imageOverlay",
+            "href": "assets/images/animations/34_animPSD_3.gif",
+            "bounds": {
+                "southWest": {"lat":47.98992166741417,"lng":62.8857421875},
+                "northEast": {"lat":9.96885060854611,"lng":142.6904296875}
+            },
+            "limited_to_zoom": [0,1,2,3]
+        },
+        {
+            "type": "imageOverlay",
+            "href": "assets/images/animations/network2.gif",
+            "bounds": {
+                "southWest": {"lat":68.72044056989829,"lng":174.375},
+                "northEast": {"lat":82.07002819448267,"lng":89.12109375}
+            },
+            "limited_to_zoom": [0,1,2,3]
+        },
+        {
+            "type": "imageOverlay",
+            "href": "assets/images/animations/network.gif",
+            "bounds": {
+                "southWest": {"lat":-32.39851580247401,"lng":176.0888671875},
+                "northEast": {"lat":3.337953961416485,"lng":77.47558593749999}
+            },
+            "limited_to_zoom": [0,1,2,3]
+        },
+        {
+            "type": "imageOverlay",
+            "href": "assets/images/animations/chart.gif",
+            "bounds": {
+                "southWest": {"lat":76.57815922398312,"lng":-116.24633789062499},
+                "northEast": {"lat":68.5443150407769,"lng":-72.476806640625}
+            },
+            "limited_to_zoom": [0,1,2,3]
+        }
+    ]
+}
