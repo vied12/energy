@@ -106,6 +106,7 @@ function energyMap(markerService, imageOverlayService, leafletData, navService, 
                     }
                     // resize links
                     if (_.has(layer.options, 'icon')) {
+                        layer.setOpacity(1);
                         if (_.has(layer.options, 'size')) {
                             angular.element(layer._icon).find('div').css({width: layer.options.size[map.getZoom()], height: layer.options.size[map.getZoom()]});
                         } else {
@@ -127,7 +128,7 @@ function energyMap(markerService, imageOverlayService, leafletData, navService, 
         }
         $scope.$on('leafletDirectiveMap.zoomend', updateMarkers);
         $scope.$on('leafletDirectiveMap.zoomend', onZoomChanged);
-        // $scope.$on('leafletDirectiveMap.zoomstart', hideMarker);
+        $scope.$on('leafletDirectiveMap.zoomstart', hideMarker);
         $scope.$watch('map.markers', onZoomChanged, true);
 
         // function styleMarkers() {
