@@ -1,11 +1,20 @@
 'use strict';
 
 var gulp = require('gulp');
+var del = require('del');
 
 var paths = gulp.paths;
 
 var $ = require('gulp-load-plugins')({
   pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license', 'del']
+});
+
+gulp.task('clean:dist', function (cb) {
+  del([
+    paths.dist + '/**',
+    // we don't want to clean this file though so we negate the pattern
+    '!' + paths.dist + '/.git'
+  ], cb);
 });
 
 gulp.task('partials', function () {
