@@ -81,9 +81,9 @@ function energyMap(markerService, imageOverlayService, leafletData, navService, 
         });
 
         var link_size = {
-            4: 40 / 3,
-            5: 40 / 2,
-            6: 40
+            4: 41 / 3,
+            5: 41 / 2,
+            6: 41
         }
         function onZoomChanged() {
             leafletData.getMap().then(function (map) {
