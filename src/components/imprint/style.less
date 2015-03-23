@@ -12,6 +12,11 @@
 
 #imprint a {
 	color: inherit;
+	text-decoration: none;
+}
+
+#imprint a:hover {
+    text-decoration: underline;
 }
 
 #imprint ul, #imprint li {
@@ -23,8 +28,8 @@
 /* overlay */
 
 .cd-popup {
-  opacity: 0;
-  visibility: hidden;
+  opacity: 1;
+  visibility: visible;
   -webkit-transition: opacity 0.3s 0s, visibility 0s 0.3s;
   -moz-transition: opacity 0.3s 0s, visibility 0s 0.3s;
   transition: opacity 0.3s 0s, visibility 0s 0.3s;
@@ -65,16 +70,38 @@
 /* end overlay */
 
 
-#imprint h2 {
+#imprint h2,
+#imprint h3 {
     display: inline-block;
     position: relative;
     left: 3%;
     font-family: 'Roboto Condensed', sans-serif;
     text-transform: uppercase;
-    font-size: 2.45em;
     letter-spacing: 1px;
-    line-height: 1.75em;
+    line-height: 1.1em;
     margin: 0;
+    font-weight: bold;
+}
+
+#imprint h2 {
+    font-size: 2em;
+    margin-top: 30px;
+}
+
+#imprint h3 {
+    font-size: 1.65em;
+}
+
+#imprint h4 {
+    display: block;
+    position: relative;
+    font-family: 'Roboto Condensed', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1.65em;
+    line-height: 1.1em;
+    margin: 60px 0 30px;
+    font-weight: bold;
 }
 
 #imprint .cd-popup-close {
@@ -86,11 +113,20 @@
     background: rgba(0, 0, 0, .95) url('../assets/images/cross.svg') center no-repeat;
     background-size: 18px;
     text-indent: -9999px;
+    z-index: 10;
+    cursor: pointer;
+}
+
+.inner-content-div {
+    overflow: scroll;
+    position: relative;
+    height: 100%;
+    z-index: 1;
 }
 
 .cd-popup-container {
     position: absolute;
-    top: 14%;
+    top: 150px;
     left: 3%;
     width: 94%;
     margin: 0 !important;
