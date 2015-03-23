@@ -24,7 +24,7 @@ function energyMap(markerService, imageOverlayService, leafletData, navService, 
                     noWrap: true,
                     tms: true,
                     crs: L.CRS.Simple,
-                    detectRetina: true,
+                    detectRetina: false,
                     reuseTiles: true,
                 },
                 scrollWheelZoom: true
