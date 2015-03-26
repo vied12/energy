@@ -1,0 +1,120 @@
+
+.splashscreen {
+    font-size: 100%;
+    color: #111;
+    text-rendering: optimizelegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: 'Roboto', sans-serif;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    background-color: white;
+    z-index: 2000;
+    -webkit-transition: all 1s cubic-bezier(0.47, 0, 0.745, 0.715);
+    -moz-transition: all 1s cubic-bezier(0.47, 0, 0.745, 0.715);
+    -o-transition: all 1s cubic-bezier(0.47, 0, 0.745, 0.715);
+    transition: all 1s cubic-bezier(0.47, 0, 0.745, 0.715);
+    &.ng-hide {
+        -webkit-transform: translateY(-100%);
+        -ms-transform: translateY(-100%);
+        transform: translateY(-100%);
+    }
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+    ul, li {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    .border {
+        position: absolute;
+        background: #000;
+    }
+    .top {
+        top: 0;
+        width: 100%;
+        height: 20px;
+    }
+    .right {
+        right: 0;
+        height: 100%;
+        width: 20px;
+    }
+    .bottom {
+        bottom: 0;
+        width: 100%;
+        height: 20px;
+    }
+    .left {
+        left: 0;
+        height: 100%;
+        width: 20px;
+    }
+    header {
+        margin-top: 60px;
+    }
+    header h1 {
+        font-family: 'Noto Serif', serif;
+        font-size: 1.25em;
+        font-weight: normal;
+        font-style: italic;
+        margin: 0;
+    }
+    header h2 {
+        font-family: 'Roboto Condensed', helvetica, sans-serif;
+        font-size: 2em;
+        line-height: 1.1em;
+        text-transform: uppercase;
+        margin: .5em 0;
+    }
+    header h3 {
+        font-family: 'Noto Serif', serif;
+        font-size: 1em;
+        font-weight: normal;
+        font-style: italic;
+        margin: 0;
+    }
+    .animation {
+        position: absolute;
+        top: 55%;
+        left: 50%;
+        -moz-transform: translate(-50% , -50%);
+        -webkit-transform: translate(-50% , -50%);
+        -o-transform: translate(-50% , -50%);
+        -ms-transform: translate(-50% , -50%);
+        transform: translate(-50% , -50%);
+        z-index: -1;
+    }
+    .animation img {
+        width: 100%;
+        height: auto;
+    }
+    footer {
+        position: absolute;
+        bottom: 60px;
+        width: 100%;
+    }
+    footer div {
+        display: inline-block;
+        width: 100px;
+        margin: 0 20px;
+    }
+    @media screen and (max-width: 900px) {
+        #navigation-opener {
+          display: block;
+        }
+    }
+    @media screen and (max-device-width: 480px) {
+    }
+    @media screen and (max-width: 340px) {
+    }
+}

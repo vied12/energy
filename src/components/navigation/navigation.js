@@ -27,7 +27,7 @@ function energyNavigation($http, navService) {
 navService.$inject = ['$http', '$rootScope', '$stateParams', '$state'];
 function navService($http, $rootScope, $stateParams, $state) {
     var info = {
-        stepIndex: parseInt($stateParams.step || 0),
+        stepIndex: parseInt($stateParams.step || 1),
         imprint: false
     };
     var steps = $http.get('assets/data/steps.json').then(function(response){return response.data.steps});

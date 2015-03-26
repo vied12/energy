@@ -1,0 +1,27 @@
+<section class="splashscreen" ng-hide="splash.isClose">
+    <div class="border top"></div><div class="border right"></div><div class="border bottom"></div><div class="border left"></div>
+    <div class="">
+        <header>
+            <h1>Energiesystem Stadt</h1>
+            <h2>DIE INFORMATIONSARCHITEKTUR<br />DER KOMMUNALEN ENERGIEWENDE</h2>
+            <h3>Eine interaktive Infografik für kommunale Entscheidungsträger und Stadtplaner</h3>
+    {{ splash.isClose }}
+        </header>
+        <div class="animation">
+            <a ng-click="splash.isClose = true">
+                <img src="assets/images/splashscreen.gif" alt="animation" />
+            </a>
+        </div>
+        <footer>
+            <div class="">
+                <img src="assets/images/test-real.svg" alt="" />
+            </div>
+            <div class="">
+                <img src="assets/images/bauhaus-universitat-weimar.svg" alt="" />
+            </div>
+            <div class="">
+                <img src="assets/images/esf.svg" alt="" />
+            </div>
+        </footer>
+    </div>
+</section>

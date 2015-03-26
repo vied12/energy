@@ -1,7 +1,7 @@
 'use strict';
 
 angular
-    .module('energy', ['ngCookies', 'ngTouch', 'ui.router', 'ui.bootstrap', 'leaflet-directive'])
+    .module('energy', ['ngCookies', 'ngTouch', 'ui.router', 'ui.bootstrap', 'leaflet-directive', 'ngAnimate'])
     .config(function ($stateProvider, $urlRouterProvider) {
         $stateProvider
             .state('home', {
