@@ -13,8 +13,8 @@
             "type": "imageOverlay",
             "href": "assets/images/animations/network2.gif",
             "bounds": {
-                "southWest": {"lat":68.72044056989829,"lng":174.375},
-                "northEast": {"lat":82.07002819448267,"lng":89.12109375}
+                "southWest": {"lat":81.36128726057069,"lng":91.20849609375},
+                "northEast": {"lat":67.5085683629386,"lng":172.68310546875}
             },
             "limited_to_zoom": [0,1,2,3]
         },
