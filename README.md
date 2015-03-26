@@ -4,6 +4,8 @@ _DIE INFORMATIONSARCHITEKTUR DER KOMMUNALEN ENERGIEWENDE_
 
 ## Presentation
 
+![logo](src/assets/images/splashscreen.gif "logo")
+
 Eine interaktive Infografik für kommunale Entscheidungsträger und Stadtplaner.  
 
 Die Infografik gibt einen Überblick über für die Planung und Umsetzung relevante Themenfelder und stellt die zur Stadtraumtypisierung und energetischen Bilanzierung erforderlichen Daten und Informationen bereit. Die Navigation erfolgt wahlweise über die integrierte Zoomfunktion oder über die Navigationsleiste.  
