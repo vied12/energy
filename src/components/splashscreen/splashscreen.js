@@ -1,11 +1,12 @@
-function SplashscreenDirective($http, navService) {
+function SplashscreenDirective($window) {
     function SplashscreenCtrl() {
         var vm = this;
+        function close() {
+            vm.isClose = true;
+        }
         angular.extend(vm, {
             isClose: false,
-            close: function() {
-                vm.isClose = true;
-            }
+            close: _.debounce(close),
         });
     }
     return {
@@ -13,19 +14,11 @@ function SplashscreenDirective($http, navService) {
         templateUrl: 'components/splashscreen/view.html',
         scope: true,
         controller: SplashscreenCtrl,
-        controllerAs: 'splash',
-        link: function(scope, element, attr, ctrl) {
-            function CloseSplashScreen() {
-                scope.splash.close();
-                scope.$apply();
-            }
-            element.get(0).addEventListener("mousewheel", CloseSplashScreen, false);
-            element.get(0).addEventListener("DOMMouseScroll", CloseSplashScreen, false);
-        }
+        controllerAs: 'splash'
     }
 }
 
 angular.module('energy')
-    .directive('energySplash', ['$http', 'navService', SplashscreenDirective]);
+    .directive('energySplash', ['$window', SplashscreenDirective]);
 
 // EOF
