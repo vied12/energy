@@ -10,9 +10,9 @@
         },
         {
             "shortName": "Overview",
-            "bounds" : {
-                "southWest": {"lat":84.8024737243345,"lng":-176.8359375},
-                "northEast": {"lat":-61.77312286453146,"lng":178.59375}
+            "bounds": {
+                "southWest": {"lat":85.287916121237,"lng":-182.109375},
+                "northEast": {"lat":-63.54855223203643,"lng":182.8125}
             }
         },
         {
