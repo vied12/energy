@@ -75,7 +75,7 @@ function energyMap(markerService, imageOverlayService, leafletData, navService, 
                 navService.getCurrentBounds().then(function(bounds) {
                     $timeout(function() {
                         $scope.map.goTo(bounds);
-                    });
+                    }, 500);
                 });
             });
         });
